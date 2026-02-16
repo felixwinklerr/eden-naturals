@@ -1,10 +1,19 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTranslations } from '@/contexts/LocaleContext'
 
-export function ProductSelector() {
+export type ProductImageInfo = { handle: string; imageUrl?: string; imageAlt?: string }
+
+interface ProductSelectorProps {
+  productImages?: ProductImageInfo[]
+}
+
+export function ProductSelector({ productImages = [] }: ProductSelectorProps) {
   const t = useTranslations()
+
+  const getImage = (href: string) => productImages.find((img) => img.handle === href.replace(/^\/products\//, ''))
 
   const products = [
     {
@@ -81,8 +90,18 @@ export function ProductSelector() {
               href={product.href}
               className="bg-white rounded-xl p-5 md:p-6 shadow-sm hover:shadow-lg border border-gray-100 hover:border-accent transition-all group"
             >
-              <div className="aspect-[3/2] bg-gray-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gray-100 transition-colors">
-                <span className="text-4xl md:text-5xl">🥤</span>
+              <div className="aspect-[3/2] bg-gray-50 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gray-100 transition-colors overflow-hidden relative">
+                {getImage(product.href)?.imageUrl ? (
+                  <Image
+                    src={getImage(product.href)!.imageUrl!}
+                    alt={getImage(product.href)!.imageAlt ?? t(product.titleKey)}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
+                  <span className="text-4xl md:text-5xl">🥤</span>
+                )}
               </div>
               {'tagKey' in product && product.tagKey && (
                 <span className="inline-block bg-accent text-white text-[10px] md:text-xs font-bold px-2.5 py-1 rounded-full mb-2 uppercase tracking-wide">
@@ -117,8 +136,18 @@ export function ProductSelector() {
                 href={product.href}
                 className="bg-white rounded-lg p-4 border border-gray-100 hover:border-accent transition-all group flex items-center gap-4"
               >
-                <div className="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-gray-100 transition-colors">
-                  <span className="text-2xl">🥤</span>
+                <div className="w-16 h-16 bg-gray-50 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-gray-100 transition-colors overflow-hidden relative">
+                  {getImage(product.href)?.imageUrl ? (
+                    <Image
+                      src={getImage(product.href)!.imageUrl!}
+                      alt={getImage(product.href)!.imageAlt ?? t(product.titleKey)}
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                    />
+                  ) : (
+                    <span className="text-2xl">🥤</span>
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-text text-sm md:text-base">{t(product.titleKey)}</h3>
