@@ -8,6 +8,7 @@ import { CartDrawer } from '@/components/cart/CartDrawer'
 import { CartProvider } from '@/contexts/CartContext'
 import { CartDrawerProvider } from '@/contexts/CartDrawerContext'
 import { LocaleProvider } from '@/contexts/LocaleContext'
+import { FacebookPixel } from '@/components/analytics/FacebookPixel'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={inter.variable} suppressHydrationWarning>
       <body>
+        <FacebookPixel />
         <LocaleProvider>
           <CartProvider>
             <CartDrawerProvider>

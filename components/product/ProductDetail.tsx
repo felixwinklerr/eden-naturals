@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { formatPrice, calculatePricePerKg, extractWeightFromVariantTitle } from '@/lib/utils'
 import { AddToCartButton } from './AddToCartButton'
 import { StickyAddToCart } from './StickyAddToCart'
@@ -11,6 +11,7 @@ import { ProductSocialProof } from './ProductSocialProof'
 import { ProductCrossSell } from './ProductCrossSell'
 import { getProductData, type ProductInfo } from '@/lib/products/product-data'
 import { useTranslations } from '@/contexts/LocaleContext'
+import { trackViewContent } from '@/lib/facebook-pixel'
 
 interface ProductDetailProps {
   product: any
@@ -59,6 +60,15 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
     const variant = product.variants.edges.find((v: any) => v.node.id === variantId)
     if (variant) setSelectedVariant(variant.node)
   }
+
+  useEffect(() => {
+    trackViewContent(
+      [product.id || product.handle],
+      product.title,
+      price ? parseFloat(String(price)) : undefined,
+      currencyCode
+    )
+  }, [product.id, product.handle, product.title, price, currencyCode])
 
   return (
     <>

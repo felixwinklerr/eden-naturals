@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useTranslations } from '@/contexts/LocaleContext'
+import { trackLead } from '@/lib/facebook-pixel'
 
 export default function KontaktPage() {
   const t = useTranslations()
@@ -17,6 +18,7 @@ export default function KontaktPage() {
     e.preventDefault()
     // TODO: Connect to email service or form handler
     console.log('Form submitted:', formData)
+    trackLead()
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 3000)
   }

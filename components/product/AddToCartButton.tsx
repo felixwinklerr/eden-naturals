@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useCart } from '@/contexts/CartContext'
 import { useCartDrawer } from '@/contexts/CartDrawerContext'
 import { useTranslations } from '@/contexts/LocaleContext'
+import { trackAddToCart } from '@/lib/facebook-pixel'
 
 interface AddToCartButtonProps {
   variantId?: string
@@ -24,6 +25,7 @@ export function AddToCartButton({ variantId, available = true, quantity = 1 }: A
     const success = await addItem(variantId, quantity)
     setLoading(false)
     if (success) {
+      trackAddToCart([variantId])
       setAdded(true)
       openDrawer()
       setTimeout(() => setAdded(false), 2000)

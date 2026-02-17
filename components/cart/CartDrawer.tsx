@@ -6,6 +6,7 @@ import { useCart } from '@/contexts/CartContext'
 import { useCartDrawer } from '@/contexts/CartDrawerContext'
 import { useTranslations } from '@/contexts/LocaleContext'
 import { formatPrice } from '@/lib/utils'
+import { trackInitiateCheckout } from '@/lib/facebook-pixel'
 
 export function CartDrawer() {
   const { isOpen, closeDrawer } = useCartDrawer()
@@ -151,11 +152,25 @@ export function CartDrawer() {
                 <span>{t('cart.securePayment')}</span>
               </div>
               {cart?.checkoutUrl ? (
-                <a href={cart.checkoutUrl} className="btn-primary w-full block text-center text-base" onClick={closeDrawer}>
+                <a
+                  href={cart.checkoutUrl}
+                  className="btn-primary w-full block text-center text-base"
+                  onClick={() => {
+                    trackInitiateCheckout(subtotal, 'EUR', cartItems.length)
+                    closeDrawer()
+                  }}
+                >
                   {t('cart.checkout')}
                 </a>
               ) : (
-                <Link href="/checkout" className="btn-primary w-full block text-center text-base" onClick={closeDrawer}>
+                <Link
+                  href="/checkout"
+                  className="btn-primary w-full block text-center text-base"
+                  onClick={() => {
+                    trackInitiateCheckout(subtotal, 'EUR', cartItems.length)
+                    closeDrawer()
+                  }}
+                >
                   {t('cart.checkout')}
                 </Link>
               )}
