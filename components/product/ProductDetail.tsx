@@ -176,7 +176,7 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                 <div className="flex items-start gap-2.5">
                   <span className="text-accent mt-0.5 flex-shrink-0 text-lg">✓</span>
                   <span className="text-text text-sm md:text-base font-medium">
-                    {t('product.noShakerBullet')}
+                    {enrichedData.isVegan ? t('product.noShakerBulletVegan') : t('product.noShakerBulletWhey')}
                   </span>
                 </div>
                 <div className="flex items-start gap-2.5">
@@ -280,7 +280,9 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                 <div className="bg-white rounded-lg p-4 border border-gray-100">
                   <span className="text-2xl mb-2 block">💧</span>
                   <h4 className="font-semibold text-text text-sm md:text-base mb-1">{t('product.dissolvesFast')}</h4>
-                  <p className="text-text-light text-xs md:text-sm">{t('product.dissolvesDesc')}</p>
+                  <p className="text-text-light text-xs md:text-sm">
+                    {enrichedData.isVegan ? t('product.dissolvesDescVegan') : t('product.dissolvesDescWhey')}
+                  </p>
                 </div>
                 <div className="bg-white rounded-lg p-4 border border-gray-100">
                   <span className="text-2xl mb-2 block">🧾</span>
@@ -394,8 +396,12 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                 </div>
                 <div className="bg-white rounded-lg p-4 text-center border border-gray-100">
                   <span className="text-3xl block mb-2">3️⃣</span>
-                  <h4 className="font-semibold text-text text-sm mb-1">{t('product.step3')}</h4>
-                  <p className="text-text-light text-xs">{t('product.step3Desc')}</p>
+                  <h4 className="font-semibold text-text text-sm mb-1">
+                    {enrichedData.isVegan ? t('product.step3Vegan') : t('product.step3Whey')}
+                  </h4>
+                  <p className="text-text-light text-xs">
+                    {enrichedData.isVegan ? t('product.step3DescVegan') : t('product.step3DescWhey')}
+                  </p>
                 </div>
               </div>
               <div className="bg-white rounded-lg p-4 border border-gray-100">
@@ -419,17 +425,25 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
         {/* Section 6: Risk Reversal */}
         <div className="mb-8 md:mb-12">
           <div className="bg-accent rounded-xl p-6 md:p-8 text-white text-center">
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-2xl mx-auto text-left">
               <span className="text-3xl md:text-4xl block mb-3">🛡️</span>
-              <h3 className="text-xl md:text-2xl font-bold mb-3">
+              <h3 className="text-xl md:text-2xl font-bold mb-4">
                 {t('product.guaranteeSection')}
               </h3>
-              <p className="text-base md:text-lg opacity-90 mb-4 leading-relaxed">
-                {t('product.guaranteeCopy')}
-              </p>
-              <p className="text-sm md:text-base opacity-80 mb-5">
-                {t('product.guaranteeCopy2')}
-              </p>
+              <div className="space-y-4 text-sm md:text-base opacity-95 mb-6">
+                <div>
+                  <p className="font-semibold text-white mb-1">{t('product.guaranteeTesterLabel')}</p>
+                  <p className="opacity-90 leading-relaxed">{t('product.guaranteeTester')}</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-white mb-1">{t('product.guaranteeBulkLabel')}</p>
+                  <p className="opacity-90 leading-relaxed">{t('product.guaranteeBulk')}</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-white mb-1">{t('product.guaranteeRepeatLabel')}</p>
+                  <p className="opacity-90 leading-relaxed">{t('product.guaranteeRepeat')}</p>
+                </div>
+              </div>
               <AddToCartButton
                 variantId={selectedVariant?.id}
                 available={selectedVariant?.availableForSale}

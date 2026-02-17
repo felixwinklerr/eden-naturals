@@ -37,19 +37,19 @@ export default function KontaktPage() {
                 <h3 className="font-semibold text-text mb-2">{t('pages.contact.company')}</h3>
                 <p className="text-text-light">
                   {t('pages.contact.address')}<br />
-                  {t('pages.contact.luxembourg')}
+                  {t('pages.contact.addressZip')}
                 </p>
               </div>
               <div>
                 <h3 className="font-semibold text-text mb-2">{t('pages.contact.email')}</h3>
-                <a href="mailto:info@eden.lu" className="text-accent hover:underline">
-                  info@eden.lu
+                <a href={`mailto:${t('pages.contact.emailAddress')}`} className="text-accent hover:underline">
+                  {t('pages.contact.emailAddress')}
                 </a>
               </div>
               <div>
                 <h3 className="font-semibold text-text mb-2">{t('pages.contact.phone')}</h3>
-                <a href="tel:+352" className="text-accent hover:underline">
-                  {t('pages.contact.phonePlaceholder')}
+                <a href={`tel:${t('pages.contact.phoneNumber').replace(/\s/g, '')}`} className="text-accent hover:underline">
+                  {t('pages.contact.phoneNumber')}
                 </a>
               </div>
               <div>

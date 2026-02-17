@@ -27,38 +27,30 @@ export const productData: Record<string, ProductInfo> = {
   'erbsenprotein': {
     title: 'Erbsenprotein',
     handle: 'erbsenprotein',
-    tagline: '🌱 Erbsenprotein neu gedacht.',
-    description: `Nicht durch Zusatzstoffe verbessert, sondern durch Systemverständnis.
+    tagline: 'Erbsenprotein neu gedacht.',
+    description: `10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.
 
-Unser Erbsenprotein bleibt roh, unverändert und frei von Lecithin oder Instantisierung.
+Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl – ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Die physikalische Grenzflächen-Modulation ordnet das Zusammenspiel von Protein, Wasser und Sensorik neu –
+Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.
 
-für ein natürlich sauberes Mundgefühl, schnelle Löslichkeit und maximale Funktion.
-
-🌿 Rein pflanzlich. Vollständig vegan.
-
-Kein Gel, kein Schleim, kein Maskieren.
-
-Nur ehrliche Funktionalität.
-
-Das Ergebnis: Protein, das wirkt – ohne sich zu verstellen.`,
+🌿 Rein pflanzlich. Vollständig vegan. Kein Gel, kein Schleim, kein Maskieren.`,
     keyPoints: [
-      'Löst sich schnell und gleichmäßig auf',
-      'Kein Klumpen, kein Film, kein schweres Mundgefühl',
-      'Angenehm neutral im Geschmack',
+      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
+      'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan'
     ],
     whatMakesItSpecial: {
       title: 'Was es besonders macht',
-      description: `Wir verändern nicht das Protein selbst, sondern das Verhalten des Systems aus Protein, Wasser und Mundgefühl.
+      description: `Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Das geschieht durch physikalische Grenzflächen-Modulation – ein Prozess, bei dem sich die Stoffe besser verteilen und aneinander anpassen.`
+Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.`
     },
     result: [
-      'Löst sich schnell und gleichmäßig auf',
-      'Kein Klumpen, kein Film, kein schweres Mundgefühl',
-      'Angenehm neutral im Geschmack',
+      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
+      'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan'
     ],
     shortSummary: `Wir verkaufen kein „besseres Erbsenprotein".
@@ -82,38 +74,30 @@ Wir verkaufen funktionierendes, pflanzliches Protein.`,
   'reisprotein': {
     title: 'Reisprotein',
     handle: 'reisprotein',
-    tagline: '🌾 Reisprotein neu gedacht.',
-    description: `Nicht durch Zusatzstoffe verbessert, sondern durch Systemverständnis.
+    tagline: 'Reisprotein neu gedacht.',
+    description: `10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.
 
-Unser Reisprotein bleibt roh, unverändert und frei von Lecithin oder Instantisierung.
+Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl – ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Die physikalische Grenzflächen-Modulation ordnet das Zusammenspiel von Protein, Wasser und Sensorik neu –
+Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.
 
-für ein natürlich sauberes Mundgefühl, schnelle Löslichkeit und maximale Funktion
-
-🌿 Rein pflanzlich. Vollständig vegan. Allergenarm.
-
-Kein Gel, kein Schleim, kein Maskieren.
-
-Nur ehrliche Funktionalität.
-
-Das Ergebnis: Protein, das wirkt – ohne sich zu verstellen.`,
+🌿 Rein pflanzlich. Vollständig vegan. Allergenarm. Kein Gel, kein Schleim, kein Maskieren.`,
     keyPoints: [
-      'Löst sich schnell und gleichmäßig auf',
-      'Kein Klumpen, kein Film, kein schweres Mundgefühl',
-      'Angenehm neutral im Geschmack',
+      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
+      'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan, hypoallergen'
     ],
     whatMakesItSpecial: {
       title: 'Was es besonders macht',
-      description: `Wir verändern nicht das Protein selbst, sondern das Verhalten des Systems aus Protein, Wasser und Mundgefühl.
+      description: `Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Das geschieht durch physikalische Grenzflächen-Modulation – ein Prozess, bei dem sich die Stoffe besser verteilen und aneinander anpassen.`
+Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.`
     },
     result: [
-      'Löst sich schnell und gleichmäßig auf',
-      'Kein Klumpen, kein Film, kein schweres Mundgefühl',
-      'Angenehm neutral im Geschmack',
+      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
+      'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan, hypoallergen'
     ],
     shortSummary: `Wir verkaufen kein „besseres Reisprotein".
@@ -138,38 +122,30 @@ Wir verkaufen funktionierendes, veganes Protein.`,
   'vegan-pea-rice-blend': {
     title: '70% Erbsen- & 30% Reisprotein',
     handle: 'vegan-pea-rice-blend',
-    tagline: '🌱 Pflanzliches Protein neu gedacht.',
-    description: `Nicht durch Zusatzstoffe verbessert, sondern durch Systemverständnis.
+    tagline: 'Pflanzliches Protein neu gedacht.',
+    description: `10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.
 
-Unsere 70/30 Mischung aus Erbsen- und Reisprotein bleibt roh, unverändert und frei von Lecithin oder Instantisierung.
+Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl – ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Die physikalische Grenzflächen-Modulation ordnet das Zusammenspiel von Protein, Wasser und Sensorik neu –
+Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.
 
-für ein natürlich sauberes Mundgefühl, schnelle Löslichkeit und maximale Funktion.
-
-🌿 Rein pflanzlich. Vollständig vegan.
-
-Kein Gel, kein Schleim, kein Maskieren.
-
-Nur ehrliche Funktionalität.
-
-Das Ergebnis: Protein, das wirkt – ohne sich zu verstellen.`,
+🌿 Rein pflanzlich. Vollständig vegan. Kein Gel, kein Schleim, kein Maskieren.`,
     keyPoints: [
-      'Löst sich schnell und gleichmäßig auf',
-      'Kein Klumpen, kein Film, kein schweres Mundgefühl',
-      'Angenehm neutral im Geschmack',
+      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
+      'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan'
     ],
     whatMakesItSpecial: {
       title: 'Was es besonders macht',
-      description: `Wir verändern nicht das Protein selbst, sondern das Verhalten des Systems aus Protein, Wasser und Mundgefühl.
+      description: `Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Das geschieht durch physikalische Grenzflächen-Modulation – ein Prozess, bei dem sich die Stoffe besser verteilen und aneinander anpassen.`
+Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.`
     },
     result: [
-      'Löst sich schnell und gleichmäßig auf',
-      'Kein Klumpen, kein Film, kein schweres Mundgefühl',
-      'Angenehm neutral im Geschmack',
+      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
+      'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan'
     ],
     shortSummary: `Wir verkaufen kein „besseres pflanzliches Protein".
@@ -193,33 +169,23 @@ Wir verkaufen funktionierendes Pflanzliches Protein.`,
   'wpc-80': {
     title: 'WPC 80',
     handle: 'wpc-80',
-    tagline: '💪 Whey Protein neu gedacht.',
-    description: `Nicht durch Zusatzstoffe verbessert, sondern durch Systemverständnis.
+    tagline: 'Whey Protein neu gedacht.',
+    description: `Optimale Löslichkeit: klumpenfrei durch leichte Scherkraft (kurzes Schütteln im Shaker).
 
-Unser WPC 80 bleibt roh, unverändert und frei von Lecithin oder Instantisierung.
+Unser WPC 80 bleibt roh, unverändert und frei von Lecithin oder Instantisierung – für ein sauberes Mundgefühl und maximale Wirkung.
 
-Die physikalische Grenzflächen-Modulation ordnet das Zusammenspiel von Protein, Wasser und Sensorik neu –
-
-für ein natürlich sauberes Mundgefühl, schnelle Löslichkeit und maximale Wirkung.
-
-Kein Gel, kein Schleim, kein Maskieren.
-
-Nur ehrliche Funktionalität.
-
-Das Ergebnis: Protein, das wirkt – ohne sich zu verstellen.`,
+Kein Gel, kein Schleim, kein Maskieren. Nur ehrliche Funktionalität.`,
     keyPoints: [
-      'Löst sich schnell und gleichmäßig auf',
+      'Optimale Löslichkeit: klumpenfrei durch leichte Scherkraft (kurzes Schütteln im Shaker)',
       'Kein Klumpen, kein Film, kein schweres Mundgefühl',
       'Angenehm neutral im Geschmack'
     ],
     whatMakesItSpecial: {
       title: 'Was es besonders macht',
-      description: `Wir verändern nicht das Protein selbst, sondern das Verhalten des Systems aus Protein, Wasser und Mundgefühl.
-
-Das geschieht durch physikalische Grenzflächen-Modulation – ein Prozess, bei dem sich die Stoffe besser verteilen und aneinander anpassen.`
+      description: `Optimale Löslichkeit: Unser WPC 80 löst sich klumpenfrei durch leichte Scherkraft – kurzes Schütteln im Shaker genügt. Ohne Lecithin, ohne chemische Instantisierung.`
     },
     result: [
-      'Löst sich schnell und gleichmäßig auf',
+      'Optimale Löslichkeit: klumpenfrei durch leichte Scherkraft (kurzes Schütteln im Shaker)',
       'Kein Klumpen, kein Film, kein schweres Mundgefühl',
       'Angenehm neutral im Geschmack'
     ],

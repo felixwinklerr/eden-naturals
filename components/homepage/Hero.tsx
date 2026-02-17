@@ -17,8 +17,9 @@ export function Hero() {
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-text-light mb-5 md:mb-6 leading-relaxed max-w-lg mx-auto md:mx-0">
               {t('home.hero.subline')}
-              <br className="hidden sm:inline" />
-              <span className="font-medium text-text"> {t('home.hero.sublineBold')}</span>
+            </p>
+            <p className="text-sm font-semibold text-text mb-2 max-w-md mx-auto md:mx-0">
+              {t('home.hero.effectLabel')}
             </p>
             <div className="space-y-2.5 mb-6 md:mb-8 max-w-md mx-auto md:mx-0">
               <div className="flex items-center gap-3 text-sm md:text-base">
