@@ -70,11 +70,20 @@ export function AuthorityLayer() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="aspect-video bg-gray-100 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors">
-              <div className="text-center p-3 md:p-4">
-                <div className="text-3xl md:text-4xl mb-1 md:mb-2">▶️</div>
-                <p className="text-text-light text-xs md:text-sm font-medium">{t('home.authority.mixingDemo')}</p>
-              </div>
+            <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden">
+              <video
+                src="/mixing-demo.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover"
+                aria-label={t('home.authority.mixingDemo')}
+              >
+                <source src="/mixing-demo.mp4" type="video/mp4" />
+                {t('home.authority.mixingDemo')}
+              </video>
             </div>
           </div>
         </div>
