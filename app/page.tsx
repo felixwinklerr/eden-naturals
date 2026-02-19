@@ -35,7 +35,7 @@ export default async function HomePage() {
       <SocialProof />
       <FAQ />
       <RiskReversal />
-      <FinalCTA />
+      <FinalCTA productImages={productImages} />
     </>
   )
 }

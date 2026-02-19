@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react'
 import { formatPrice, calculatePricePerKg } from '@/lib/utils'
 import { AddToCartButton } from './AddToCartButton'
 import { StickyAddToCart } from './StickyAddToCart'
-import { ProductComparison } from './ProductComparison'
 import { ProductSocialProof } from './ProductSocialProof'
 import { ProductCrossSell } from './ProductCrossSell'
 import { getProductData, type ProductInfo } from '@/lib/products/product-data'
@@ -143,9 +142,19 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
             {/* RIGHT: Purchase Block */}
             <div>
               {/* Title */}
-              <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-text mb-1 md:mb-2 leading-tight">
+              <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-text mb-1 leading-tight">
                 {enrichedData.title}
               </h1>
+
+              {/* Positionierungssatz */}
+              <p className="text-xs md:text-sm text-text-muted italic mb-1.5 leading-snug">
+                {t('product.positioning')}
+              </p>
+
+              {/* Funktionszeile */}
+              <p className="text-sm md:text-base font-semibold text-accent mb-3">
+                {t('product.functionalLine')}
+              </p>
 
               {/* Badges */}
               <div className="flex flex-wrap gap-1.5 mb-3">
@@ -185,26 +194,17 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                 </div>
               </div>
 
-              {/* 3 Benefit Bullets – kompakt auf Mobile */}
-              <div className="space-y-1.5 md:space-y-2.5 mb-4 md:mb-5 p-3 md:p-0 bg-gray-50 md:bg-transparent rounded-lg md:rounded-none">
-                <div className="flex items-start gap-2">
-                  <span className="text-accent flex-shrink-0 text-sm md:text-lg mt-0.5">✓</span>
-                  <span className="text-text text-xs md:text-base font-medium leading-snug">
-                    {t('product.twoIngredientsBullet')}
-                  </span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-accent flex-shrink-0 text-sm md:text-lg mt-0.5">✓</span>
-                  <span className="text-text text-xs md:text-base font-medium leading-snug">
-                    {enrichedData.isVegan ? t('product.noShakerBulletVegan') : t('product.noShakerBulletWhey')}
-                  </span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-accent flex-shrink-0 text-sm md:text-lg mt-0.5">✓</span>
-                  <span className="text-text text-xs md:text-base font-medium leading-snug">
-                    {t('product.proteinBullet', { protein: enrichedData.nutrition ? String(enrichedData.nutrition.protein) : '80' })}
-                  </span>
-                </div>
+              {/* Trust-Bullets direkt unter Preis */}
+              <div className="flex flex-col gap-1 mb-4">
+                <span className="text-xs text-text-light flex items-center gap-1.5">
+                  <span className="text-accent font-bold">✓</span> {t('product.trustMadeIn')}
+                </span>
+                <span className="text-xs text-text-light flex items-center gap-1.5">
+                  <span className="text-accent font-bold">✓</span> {t('product.trustDirectMaker')}
+                </span>
+                <span className="text-xs text-text-light flex items-center gap-1.5">
+                  <span className="text-accent font-bold">✓</span> {t('product.trustTolerance')}
+                </span>
               </div>
 
               {/* Variant Selector */}
@@ -439,8 +439,54 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
           </details>
         </div>
 
-        {/* Section 4: Mini Comparison Table */}
-        <ProductComparison />
+        {/* Section 4: Trust-FAQ – Sicherheit vermitteln */}
+        <div className="mb-6 md:mb-12">
+          <h3 className="text-lg md:text-2xl font-bold text-text mb-4 md:mb-6 text-center">
+            {t('product.trustTitle')}
+          </h3>
+          <div className="grid md:grid-cols-2 gap-3 md:gap-4">
+            {/* Verträglichkeit */}
+            <div className="bg-green-50 border border-green-100 rounded-xl p-4 md:p-5">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0">✅</span>
+                <div>
+                  <p className="font-bold text-text text-sm md:text-base mb-1">{t('product.trustToleranceQ')}</p>
+                  <p className="text-text-light text-xs md:text-sm leading-relaxed">{t('product.trustToleranceA')}</p>
+                </div>
+              </div>
+            </div>
+            {/* Funktioniert es */}
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 md:p-5">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0">💪</span>
+                <div>
+                  <p className="font-bold text-text text-sm md:text-base mb-1">{t('product.trustWorksQ')}</p>
+                  <p className="text-text-light text-xs md:text-sm leading-relaxed">{t('product.trustWorksA')}</p>
+                </div>
+              </div>
+            </div>
+            {/* Seriösität */}
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 md:p-5">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0">🏢</span>
+                <div>
+                  <p className="font-bold text-text text-sm md:text-base mb-1">{t('product.trustSeriousQ')}</p>
+                  <p className="text-text-light text-xs md:text-sm leading-relaxed">{t('product.trustSeriousA')}</p>
+                </div>
+              </div>
+            </div>
+            {/* Preis-Leistung */}
+            <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 md:p-5">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0">💡</span>
+                <div>
+                  <p className="font-bold text-text text-sm md:text-base mb-1">{t('product.trustWorthQ')}</p>
+                  <p className="text-text-light text-xs md:text-sm leading-relaxed">{t('product.trustWorthA')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Section 5: Social Proof */}
         <ProductSocialProof />

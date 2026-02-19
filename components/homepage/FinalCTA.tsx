@@ -1,16 +1,27 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useTranslations } from '@/contexts/LocaleContext'
 
-export function FinalCTA() {
+interface ProductImage {
+  handle: string
+  imageUrl?: string
+  imageAlt?: string | null
+}
+
+interface FinalCTAProps {
+  productImages?: ProductImage[]
+}
+
+export function FinalCTA({ productImages = [] }: FinalCTAProps) {
   const t = useTranslations()
 
-  const productLabels = [
-    { labelKey: 'home.productSelector.wpcTitle', emoji: '🥤' },
-    { labelKey: 'home.productSelector.veganBlend', emoji: '🌱' },
-    { labelKey: 'home.productSelector.riceTitle', emoji: '🍚' },
-    { labelKey: 'home.productSelector.peaTitle', emoji: '🫛' },
+  const productCards = [
+    { handle: 'wpc-80', labelKey: 'home.productSelector.wpcTitle', emoji: '🥤' },
+    { handle: 'vegan-pea-rice-blend', labelKey: 'home.productSelector.veganBlend', emoji: '🌱' },
+    { handle: 'reisprotein', labelKey: 'home.productSelector.riceTitle', emoji: '🍚' },
+    { handle: 'erbsenprotein', labelKey: 'home.productSelector.peaTitle', emoji: '🫛' },
   ]
 
   return (
@@ -18,15 +29,37 @@ export function FinalCTA() {
       <div className="container-custom">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div className="grid grid-cols-2 gap-3 md:gap-4 order-2 md:order-1">
-            {productLabels.map((product, i) => (
-              <div
-                key={i}
-                className="aspect-square bg-white bg-opacity-5 rounded-xl flex flex-col items-center justify-center hover:bg-opacity-10 transition-colors"
-              >
-                <span className="text-3xl md:text-4xl mb-1.5">{product.emoji}</span>
-                <span className="text-xs md:text-sm opacity-70">{t(product.labelKey)}</span>
-              </div>
-            ))}
+            {productCards.map((product) => {
+              const img = productImages.find((p) => p.handle === product.handle)
+              return (
+                <Link
+                  key={product.handle}
+                  href={`/products/${product.handle}`}
+                  className="aspect-square bg-white bg-opacity-5 rounded-xl overflow-hidden flex flex-col items-center justify-center hover:bg-opacity-10 transition-colors relative group"
+                >
+                  {img?.imageUrl ? (
+                    <>
+                      <Image
+                        src={img.imageUrl}
+                        alt={img.imageAlt || t(product.labelKey)}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 45vw, 22vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <span className="absolute bottom-2 left-0 right-0 text-center text-xs md:text-sm text-white font-medium px-2">
+                        {t(product.labelKey)}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-3xl md:text-4xl mb-1.5">{product.emoji}</span>
+                      <span className="text-xs md:text-sm opacity-70">{t(product.labelKey)}</span>
+                    </>
+                  )}
+                </Link>
+              )
+            })}
           </div>
           <div className="text-center md:text-left order-1 md:order-2">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-5 leading-tight">

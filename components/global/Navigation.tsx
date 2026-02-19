@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { CartIcon } from './CartIcon'
 import { useCartDrawer } from '@/contexts/CartDrawerContext'
@@ -23,8 +24,15 @@ export function Navigation() {
     <nav className="sticky top-0 z-50 bg-primary border-b border-gray-200">
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="text-2xl font-bold text-accent">
-            Eden
+          <Link href="/" className="flex items-center h-full">
+            <Image
+              src="/Eden Naturals-logo-mit text.png"
+              alt="Eden Naturals"
+              width={120}
+              height={40}
+              className="h-8 md:h-10 w-auto"
+              priority
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
