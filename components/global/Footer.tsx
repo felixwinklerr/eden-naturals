@@ -8,25 +8,25 @@ export function Footer() {
   const t = useTranslations()
 
   const shopLinks = [
-    { label: t('footer.allProducts'), href: '/products' },
-    { label: t('footer.wheyNatural'), href: '/products/wpc-80' },
-    { label: t('footer.veganBlend'), href: '/products/vegan-pea-rice-blend' },
-    { label: t('footer.starterPack'), href: '/products' },
+    { id: 'allProducts', label: t('footer.allProducts'), href: '/products' },
+    { id: 'wheyNatural', label: t('footer.wheyNatural'), href: '/products/wpc-80' },
+    { id: 'veganBlend', label: t('footer.veganBlend'), href: '/products/vegan-pea-rice-blend' },
+    { id: 'starterPack', label: t('footer.starterPack'), href: '/products' },
   ]
 
   const infoLinks = [
-    { label: t('footer.whyEden'), href: '/warum-eden' },
-    { label: t('footer.faq'), href: '/#faq' },
-    { label: t('footer.contact'), href: '/kontakt' },
-    { label: t('footer.shippingDelivery'), href: '/versand' },
+    { id: 'whyEden', label: t('footer.whyEden'), href: '/warum-eden' },
+    { id: 'faq', label: t('footer.faq'), href: '/#faq' },
+    { id: 'contact', label: t('footer.contact'), href: '/kontakt' },
+    { id: 'shipping', label: t('footer.shippingDelivery'), href: '/versand' },
   ]
 
   const legalLinks = [
-    { label: t('footer.impressum'), href: '/impressum' },
-    { label: t('footer.privacy'), href: '/datenschutz' },
-    { label: t('footer.terms'), href: '/agb' },
-    { label: t('footer.cancellation'), href: '/widerrufsrecht' },
-    { label: t('footer.cookiePolicy'), href: '/cookie-richtlinie' },
+    { id: 'impressum', label: t('footer.impressum'), href: '/impressum' },
+    { id: 'privacy', label: t('footer.privacy'), href: '/datenschutz' },
+    { id: 'terms', label: t('footer.terms'), href: '/agb' },
+    { id: 'cancellation', label: t('footer.cancellation'), href: '/widerrufsrecht' },
+    { id: 'cookiePolicy', label: t('footer.cookiePolicy'), href: '/cookie-richtlinie' },
   ]
 
   return (
@@ -49,7 +49,7 @@ export function Footer() {
             <h3 className="font-semibold text-text mb-4">{t('footer.shop')}</h3>
             <ul className="space-y-2">
               {shopLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.id}>
                   <Link href={link.href} className="text-text-light hover:text-accent transition-colors text-sm">
                     {link.label}
                   </Link>
@@ -61,7 +61,7 @@ export function Footer() {
             <h3 className="font-semibold text-text mb-4">{t('footer.info')}</h3>
             <ul className="space-y-2">
               {infoLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.id}>
                   <Link href={link.href} className="text-text-light hover:text-accent transition-colors text-sm">
                     {link.label}
                   </Link>
@@ -73,7 +73,7 @@ export function Footer() {
             <h3 className="font-semibold text-text mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.id}>
                   <Link href={link.href} className="text-text-light hover:text-accent transition-colors text-sm">
                     {link.label}
                   </Link>

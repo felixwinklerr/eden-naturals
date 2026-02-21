@@ -10,6 +10,7 @@ import { ProductSocialProof } from './ProductSocialProof'
 import { ProductCrossSell } from './ProductCrossSell'
 import { getProductData, type ProductInfo } from '@/lib/products/product-data'
 import { useTranslations } from '@/contexts/LocaleContext'
+import { getProductTitleKey } from '@/lib/i18n/product-titles'
 import { trackViewContent } from '@/lib/facebook-pixel'
 
 interface ProductDetailProps {
@@ -37,6 +38,8 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
   const pricePerKgFormatted = calculatePricePerKg(price, variantTitle)
 
   const productData: ProductInfo | null = getProductData(product.handle)
+  const titleKey = getProductTitleKey(product.handle)
+  const displayTitle = t(`productTitles.${titleKey}`) !== `productTitles.${titleKey}` ? t(`productTitles.${titleKey}`) : (productData?.title ?? product.title)
   const enrichedData = productData || {
     title: product.title,
     handle: product.handle,
@@ -143,7 +146,7 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
             <div>
               {/* Title */}
               <h1 className="text-xl md:text-3xl lg:text-4xl font-bold text-text mb-1 leading-tight">
-                {enrichedData.title}
+                {displayTitle}
               </h1>
 
               {/* Positionierungssatz */}
@@ -533,7 +536,7 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
         variantId={selectedVariant?.id}
         available={selectedVariant?.availableForSale}
         quantity={quantity}
-        title={enrichedData.title}
+        title={displayTitle}
       />
     </>
   )

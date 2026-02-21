@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { productData } from '@/lib/products/product-data'
 import { useTranslations } from '@/contexts/LocaleContext'
+import { getProductTitleKey } from '@/lib/i18n/product-titles'
 
 interface CrossSellProductFromShopify {
   handle: string
@@ -20,7 +21,12 @@ export function ProductCrossSell({ currentHandle, crossSellProducts }: ProductCr
   const t = useTranslations()
   const otherProducts = Object.values(productData).filter((p) => p.handle !== currentHandle).slice(0, 3)
 
-  // Prefer Shopify data with images when available; match by handle
+  // Prefer Shopify data with images when available; match by handle. Title from i18n.
+  const titleForHandle = (handle: string) => {
+    const key = getProductTitleKey(handle)
+    const translated = t(`productTitles.${key}`)
+    return translated !== `productTitles.${key}` ? translated : (productData[handle]?.title ?? handle)
+  }
   const crossSellWithData = crossSellProducts?.length
     ? crossSellProducts.map((shopifyProduct) => {
         const data = productData[shopifyProduct.handle] ?? {
@@ -30,15 +36,21 @@ export function ProductCrossSell({ currentHandle, crossSellProducts }: ProductCr
           isVegan: false,
         }
         const imageNode = shopifyProduct.images?.edges?.[0]?.node
+        const displayTitle = titleForHandle(shopifyProduct.handle)
         return {
           ...data,
-          title: data.title,
+          title: displayTitle,
           handle: data.handle,
           imageUrl: imageNode?.url,
-          imageAlt: imageNode?.altText ?? data.title,
+          imageAlt: imageNode?.altText ?? displayTitle,
         }
       })
-    : otherProducts.map((p) => ({ ...p, imageUrl: undefined as string | undefined, imageAlt: p.title }))
+    : otherProducts.map((p) => ({
+        ...p,
+        title: titleForHandle(p.handle),
+        imageUrl: undefined as string | undefined,
+        imageAlt: titleForHandle(p.handle),
+      }))
 
   if (crossSellWithData.length === 0) return null
 

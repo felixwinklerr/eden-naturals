@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useCart } from '@/contexts/CartContext'
 import { useCartDrawer } from '@/contexts/CartDrawerContext'
 import { useTranslations } from '@/contexts/LocaleContext'
+import { getProductTitleKey } from '@/lib/i18n/product-titles'
 import { formatPrice } from '@/lib/utils'
 import { trackInitiateCheckout } from '@/lib/facebook-pixel'
 
@@ -65,16 +66,18 @@ export function CartDrawer() {
                   const product = variant.product
                   const image = product.images?.edges?.[0]?.node
                   const lineTotal = parseFloat(variant.price.amount) * line.quantity
+                  const titleKey = getProductTitleKey(product.handle ?? '')
+                  const productTitle = t(`productTitles.${titleKey}`) !== `productTitles.${titleKey}` ? t(`productTitles.${titleKey}`) : product.title
                   return (
                     <div key={line.id} className="flex gap-3 md:gap-4 border-b pb-3 md:pb-4">
                       {image && (
                         <div className="w-16 h-16 md:w-20 md:h-20 bg-gray-100 rounded-lg flex-shrink-0 overflow-hidden relative">
                           {/* eslint-disable-next-line @next/next/no-img-element -- cart thumbnail from API, dynamic size */}
-                          <img src={image.url} alt={image.altText || product.title} className="w-full h-full object-cover" />
+                          <img src={image.url} alt={image.altText || productTitle} className="w-full h-full object-cover" />
                         </div>
                       )}
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-xs md:text-sm mb-1 truncate">{product.title}</h3>
+                        <h3 className="font-semibold text-xs md:text-sm mb-1 truncate">{productTitle}</h3>
                         <p className="text-xs text-text-light mb-2">
                           {variant.title} • {formatPrice(variant.price.amount, variant.price.currencyCode)}
                         </p>

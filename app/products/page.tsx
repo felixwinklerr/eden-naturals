@@ -4,6 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { formatPrice } from '@/lib/utils'
 import { getServerTranslations } from '@/lib/i18n/server'
+import { getProductTitleKey } from '@/lib/i18n/product-titles'
+
+export const dynamic = 'force-dynamic'
 
 export default async function ProductsPage() {
   const { t } = await getServerTranslations()
@@ -29,6 +32,8 @@ export default async function ProductsPage() {
             {products?.edges?.map(({ node: product }: any) => {
               const image = product.images?.edges?.[0]?.node
               const price = product.priceRange?.minVariantPrice
+              const titleKey = getProductTitleKey(product.handle ?? '')
+              const displayTitle = t(`productTitles.${titleKey}`) !== `productTitles.${titleKey}` ? t(`productTitles.${titleKey}`) : product.title
 
               return (
                 <Link
@@ -40,7 +45,7 @@ export default async function ProductsPage() {
                     <div className="aspect-square relative bg-gray-100">
                       <Image
                         src={image.url}
-                        alt={image.altText || product.title}
+                        alt={image.altText || displayTitle}
                         fill
                         className="object-cover"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
@@ -52,7 +57,7 @@ export default async function ProductsPage() {
                     </div>
                   )}
                   <div className="p-3 md:p-4">
-                    <h2 className="font-semibold text-text mb-1 md:mb-2 text-sm md:text-base">{product.title}</h2>
+                    <h2 className="font-semibold text-text mb-1 md:mb-2 text-sm md:text-base">{displayTitle}</h2>
                     <p className="text-accent font-bold text-base md:text-lg">
                       {formatPrice(price?.amount || '0', price?.currencyCode || 'EUR')}
                     </p>

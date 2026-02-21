@@ -1,4 +1,10 @@
 export const de = {
+  productTitles: {
+    wpc80: 'WPC 80',
+    erbsenprotein: 'Erbsenprotein',
+    reisprotein: 'Reisprotein',
+    veganPeaRiceBlend: 'Vegan Blend',
+  },
   common: {
     close: 'Schließen',
     loading: 'Wird geladen...',
@@ -568,6 +574,12 @@ export const de = {
 } as const
 
 export const fr: Record<string, unknown> = {
+  productTitles: {
+    wpc80: 'WPC 80',
+    erbsenprotein: 'Protéine de pois',
+    reisprotein: 'Protéine de riz',
+    veganPeaRiceBlend: 'Vegan Blend',
+  },
   common: {
     close: 'Fermer',
     loading: 'Chargement...',
@@ -895,6 +907,12 @@ export const fr: Record<string, unknown> = {
 }
 
 export const lb: Record<string, unknown> = {
+  productTitles: {
+    wpc80: 'WPC 80',
+    erbsenprotein: 'Äerzezprotein',
+    reisprotein: 'Räisprotein',
+    veganPeaRiceBlend: 'Vegan Blend',
+  },
   common: {
     close: 'Zoumaachen',
     loading: 'Gëtt gelueden...',
