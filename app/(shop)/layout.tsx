@@ -6,6 +6,7 @@ import { CartProvider } from '@/contexts/CartContext'
 import { CartDrawerProvider } from '@/contexts/CartDrawerContext'
 import { LocaleProvider } from '@/contexts/LocaleContext'
 import { FacebookPixel } from '@/components/analytics/FacebookPixel'
+import { MetaPixelViewCategory } from '@/components/analytics/MetaPixelViewCategory'
 
 export default function ShopLayout({
   children,
@@ -15,6 +16,7 @@ export default function ShopLayout({
   return (
     <>
       <FacebookPixel />
+      <MetaPixelViewCategory />
       <LocaleProvider>
         <CartProvider>
           <CartDrawerProvider>

@@ -27,7 +27,7 @@ export function ProductSelector({ productImages = [] }: ProductSelectorProps) {
   const getPrice = (href: string): string => {
     const info = getImage(href)
     if (info?.priceAmount) {
-      return `Ab ${formatPrice(info.priceAmount, info.priceCurrency ?? 'EUR')}`
+      return formatPrice(info.priceAmount, info.priceCurrency ?? 'EUR')
     }
     return t('home.productSelector.fromPrice')
   }

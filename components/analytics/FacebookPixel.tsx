@@ -1,10 +1,23 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Script from 'next/script'
+import { trackEvent } from '@/lib/facebook-pixel'
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID
 
 export function FacebookPixel() {
+  const pathname = usePathname()
+  const prevPathRef = useRef<string | null>(null)
+
+  useEffect(() => {
+    if (pathname && prevPathRef.current !== null && prevPathRef.current !== pathname) {
+      trackEvent('PageView')
+    }
+    prevPathRef.current = pathname
+  }, [pathname])
+
   if (!PIXEL_ID) return null
 
   return (

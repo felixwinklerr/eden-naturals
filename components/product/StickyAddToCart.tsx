@@ -5,6 +5,7 @@ import { formatPrice } from '@/lib/utils'
 import { useCart } from '@/contexts/CartContext'
 import { useCartDrawer } from '@/contexts/CartDrawerContext'
 import { useTranslations } from '@/contexts/LocaleContext'
+import { trackAddToCart } from '@/lib/facebook-pixel'
 
 interface StickyAddToCartProps {
   price: string
@@ -40,7 +41,11 @@ export function StickyAddToCart({
     setLoading(true)
     const success = await addItem(variantId, quantity)
     setLoading(false)
-    if (success) openDrawer()
+    if (success) {
+      const totalValue = parseFloat(price) * quantity
+      trackAddToCart([variantId], totalValue, currencyCode, title)
+      openDrawer()
+    }
   }
 
   return (

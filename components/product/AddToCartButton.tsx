@@ -10,9 +10,20 @@ interface AddToCartButtonProps {
   variantId?: string
   available?: boolean
   quantity?: number
+  /** For Meta Pixel value tracking */
+  value?: number
+  currencyCode?: string
+  contentName?: string
 }
 
-export function AddToCartButton({ variantId, available = true, quantity = 1 }: AddToCartButtonProps) {
+export function AddToCartButton({
+  variantId,
+  available = true,
+  quantity = 1,
+  value,
+  currencyCode = 'EUR',
+  contentName,
+}: AddToCartButtonProps) {
   const [loading, setLoading] = useState(false)
   const [added, setAdded] = useState(false)
   const { addItem } = useCart()
@@ -25,7 +36,8 @@ export function AddToCartButton({ variantId, available = true, quantity = 1 }: A
     const success = await addItem(variantId, quantity)
     setLoading(false)
     if (success) {
-      trackAddToCart([variantId])
+      const totalValue = value != null ? value * quantity : undefined
+      trackAddToCart([variantId], totalValue, currencyCode, contentName)
       setAdded(true)
       openDrawer()
       setTimeout(() => setAdded(false), 2000)

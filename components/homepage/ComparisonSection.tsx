@@ -16,7 +16,6 @@ export function ComparisonSection() {
     { featureKey: 'home.comparison.stomach', standard: 'home.comparison.restless', eden: 'home.comparison.calm', highlight: false },
     { featureKey: 'home.comparison.energyStability', standard: 'home.comparison.unstable', eden: 'home.comparison.stable', highlight: false },
     { featureKey: 'home.comparison.steps', standard: 'home.comparison.stepsStandard', eden: '2–3', highlight: true },
-    { featureKey: 'home.comparison.pricePerKg', standard: '€15–25', eden: 'ab €54/kg', highlight: false },
   ]
 
   return (

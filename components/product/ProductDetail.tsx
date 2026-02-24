@@ -258,6 +258,9 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                   variantId={selectedVariant?.id}
                   available={selectedVariant?.availableForSale}
                   quantity={quantity}
+                  value={price ? parseFloat(String(price)) : undefined}
+                  currencyCode={currencyCode}
+                  contentName={displayTitle}
                 />
               </div>
 
@@ -595,6 +598,9 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                 variantId={selectedVariant?.id}
                 available={selectedVariant?.availableForSale}
                 quantity={quantity}
+                value={price ? parseFloat(String(price)) : undefined}
+                currencyCode={currencyCode}
+                contentName={displayTitle}
               />
             </div>
           </div>

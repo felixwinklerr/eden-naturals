@@ -13,7 +13,6 @@ export function ProductComparison() {
     { featureKey: 'product.aromas', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: false },
     { featureKey: 'home.comparison.solubility', standard: 'home.comparison.solubilityStandard', eden: 'home.comparison.solubilityEden', highlight: true },
     { featureKey: 'home.comparison.steps', standard: 'home.comparison.stepsStandard', eden: '2–3', highlight: false },
-    { featureKey: 'home.comparison.pricePerKg', standard: '€15–25', eden: 'ab €54/kg', highlight: false },
   ]
 
   return (
