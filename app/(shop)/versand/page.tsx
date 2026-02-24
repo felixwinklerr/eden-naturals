@@ -72,7 +72,7 @@ export default async function VersandPage() {
             <div className="bg-gray-50 rounded-lg p-6">
               <p className="text-text-light">
                 <strong className="text-text">E-Mail:</strong>{' '}
-                <a href="mailto:info@eden.lu" className="text-accent hover:underline">info@eden.lu</a>
+                <a href={`mailto:${t('pages.contact.emailAddress')}`} className="text-accent hover:underline">{t('pages.contact.emailAddress')}</a>
               </p>
               <p className="text-text-light mt-2">
                 <strong className="text-text">Telefon:</strong>{' '}

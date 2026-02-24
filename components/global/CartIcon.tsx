@@ -1,6 +1,7 @@
 'use client'
 
 import { useCart } from '@/contexts/CartContext'
+import { useTranslations } from '@/contexts/LocaleContext'
 
 interface CartIconProps {
   onClick?: () => void
@@ -8,12 +9,13 @@ interface CartIconProps {
 
 export function CartIcon({ onClick }: CartIconProps) {
   const { itemCount } = useCart()
+  const t = useTranslations()
 
   return (
     <button
       onClick={onClick}
       className="relative p-2"
-      aria-label={`Warenkorb (${itemCount} Artikel)`}
+      aria-label={t('cart.ariaLabelWithCount', { count: itemCount })}
       style={{ minWidth: '44px', minHeight: '44px' }}
     >
       <svg

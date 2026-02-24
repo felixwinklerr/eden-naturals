@@ -8,7 +8,7 @@ import { AddToCartButton } from './AddToCartButton'
 import { StickyAddToCart } from './StickyAddToCart'
 import { ProductSocialProof } from './ProductSocialProof'
 import { ProductCrossSell } from './ProductCrossSell'
-import { getProductData, type ProductInfo } from '@/lib/products/product-data'
+import { getProductData, type ProductInfo, type NarrativeSection } from '@/lib/products/product-data'
 import { useTranslations } from '@/contexts/LocaleContext'
 import { getProductTitleKey } from '@/lib/i18n/product-titles'
 import { trackViewContent } from '@/lib/facebook-pixel'
@@ -52,7 +52,9 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
     info: [],
     nutrition: null,
     isVegan: false,
-    isHypoallergenic: false
+    isHypoallergenic: false,
+    narrativeSectionTitleKey: undefined,
+    narrativeSections: undefined,
   }
 
   const handleVariantChange = (variantId: string) => {
@@ -292,55 +294,128 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
       {/* ===== SCROLL SECTIONS ===== */}
       <div className="container-custom mt-6 md:mt-14">
 
-        {/* Section 1: Was Macht es Besonders */}
+        {/* Section 1: Was macht es besonders — generic (vegan) or narrative (WPC) */}
         <div className="mb-6 md:mb-12">
           <details className="bg-gray-50 rounded-xl overflow-hidden group" open>
             <summary className="font-bold text-text cursor-pointer text-base md:text-xl p-4 md:p-6 flex items-center justify-between" style={{ minHeight: '52px' }}>
               <span>{t('product.whatMakesSpecial')}</span>
               <span className="text-text-light text-sm transition-transform group-open:rotate-180 ml-4 flex-shrink-0">▼</span>
             </summary>
-            <div className="px-4 md:px-6 pb-4 md:pb-6">
-              <div className="grid grid-cols-2 md:grid-cols-2 gap-2 md:gap-4 mb-4 md:mb-6">
-                <div className="bg-white rounded-lg p-3 md:p-4 border border-gray-100">
-                  <span className="text-xl md:text-2xl mb-1.5 md:mb-2 block">⚙️</span>
-                  <h4 className="font-semibold text-text text-xs md:text-base mb-1">{t('product.mechanicallyRefinedCard')}</h4>
-                  <p className="text-text-light text-xs">{t('product.notChemical')}</p>
-                </div>
-                <div className="bg-white rounded-lg p-3 md:p-4 border border-gray-100">
-                  <span className="text-xl md:text-2xl mb-1.5 md:mb-2 block">💧</span>
-                  <h4 className="font-semibold text-text text-xs md:text-base mb-1">{t('product.dissolvesFast')}</h4>
-                  <p className="text-text-light text-xs">
-                    {enrichedData.isVegan ? t('product.dissolvesDescVegan') : t('product.dissolvesDescWhey')}
-                  </p>
-                </div>
-                <div className="bg-white rounded-lg p-3 md:p-4 border border-gray-100">
-                  <span className="text-xl md:text-2xl mb-1.5 md:mb-2 block">🧾</span>
-                  <h4 className="font-semibold text-text text-xs md:text-base mb-1">{t('product.twoIngredientsCard')}</h4>
-                  <p className="text-text-light text-xs">{t('product.twoIngredientsDesc')}</p>
-                </div>
-                <div className="bg-white rounded-lg p-3 md:p-4 border border-gray-100">
-                  <span className="text-xl md:text-2xl mb-1.5 md:mb-2 block">😌</span>
-                  <h4 className="font-semibold text-text text-xs md:text-base mb-1">{t('product.stomachCard')}</h4>
-                  <p className="text-text-light text-xs">{t('product.stomachDesc')}</p>
-                </div>
-              </div>
 
-              {enrichedData.whatMakesItSpecial?.description && (
-                <div className="bg-white rounded-lg p-3 md:p-5 border border-gray-100">
-                  <p className="text-text-light text-sm md:text-base leading-relaxed whitespace-pre-line">
-                    {enrichedData.whatMakesItSpecial.description}
-                  </p>
-                  {enrichedData.shortSummary && (
-                    <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100">
-                      <p className="text-text font-semibold text-sm">{t('product.shortSummary')}</p>
-                      <p className="text-text-light text-sm mt-1 whitespace-pre-line">
-                        {enrichedData.shortSummary}
-                      </p>
+            {enrichedData.narrativeSections && enrichedData.narrativeSections.length >= 4 ? (() => {
+              /* WPC: compact narrative layout */
+              const intro    = enrichedData.narrativeSections![0]
+              const physical = enrichedData.narrativeSections![2]
+              const feel     = enrichedData.narrativeSections![3]
+              const category = enrichedData.narrativeSections![4]
+              const introBullets    = intro.bulletsKey    ? t(intro.bulletsKey).split('|').map(b => b.trim()).filter(Boolean) : []
+              const physicalBullets = physical.bulletsKey ? t(physical.bulletsKey).split('|').map(b => b.trim()).filter(Boolean) : []
+              const feelBullets     = feel.bulletsKey     ? t(feel.bulletsKey).split('|').map(b => b.trim()).filter(Boolean) : []
+
+              return (
+                <div className="px-4 md:px-6 pb-5 md:pb-7">
+                  {/* "Keine"-Badges */}
+                  {introBullets.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {introBullets.map((b, i) => (
+                        <span key={i} className="inline-flex items-center gap-1 text-xs font-medium bg-white border border-gray-200 text-text px-3 py-1 rounded-full">
+                          <span className="text-accent">✕</span> {b}
+                        </span>
+                      ))}
                     </div>
                   )}
+                  {intro.closingKey && (
+                    <p className="text-text-light text-xs md:text-sm leading-relaxed mb-4 italic">
+                      {t(intro.closingKey)}
+                    </p>
+                  )}
+
+                  {/* 2-col: process vs. result */}
+                  <div className="grid md:grid-cols-2 gap-3 mb-4">
+                    <div className="bg-white rounded-xl p-4 border border-gray-100">
+                      {physical.titleKey && (
+                        <h4 className="font-semibold text-text text-xs mb-2.5 uppercase tracking-wide">
+                          {t(physical.titleKey)}
+                        </h4>
+                      )}
+                      <ul className="space-y-1.5">
+                        {physicalBullets.map((b, i) => (
+                          <li key={i} className="flex items-center gap-2 text-xs text-text-light">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="bg-accent bg-opacity-5 border border-accent border-opacity-20 rounded-xl p-4">
+                      {feel.titleKey && (
+                        <h4 className="font-semibold text-accent text-xs mb-2.5 uppercase tracking-wide">
+                          {t(feel.titleKey)}
+                        </h4>
+                      )}
+                      <ul className="space-y-1.5">
+                        {feelBullets.map((b, i) => (
+                          <li key={i} className="flex items-center gap-2 text-xs text-text">
+                            <span className="text-accent font-bold flex-shrink-0">✓</span>
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {feel.pullquoteKey && (
+                    <blockquote className="border-l-4 border-accent pl-4 italic text-text-light text-sm mb-3">
+                      {t(feel.pullquoteKey)}
+                    </blockquote>
+                  )}
+                  {category?.closingKey && (
+                    <p className="text-accent text-sm font-bold">{t(category.closingKey)}</p>
+                  )}
                 </div>
-              )}
-            </div>
+              )
+            })() : (
+              /* Vegan / generic: 4-card grid */
+              <div className="px-4 md:px-6 pb-4 md:pb-6">
+                <div className="grid grid-cols-2 gap-2 md:gap-4 mb-4 md:mb-6">
+                  <div className="bg-white rounded-lg p-3 md:p-4 border border-gray-100">
+                    <span className="text-xl md:text-2xl mb-1.5 md:mb-2 block">⚙️</span>
+                    <h4 className="font-semibold text-text text-xs md:text-base mb-1">{t('product.mechanicallyRefinedCard')}</h4>
+                    <p className="text-text-light text-xs">{t('product.notChemical')}</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 md:p-4 border border-gray-100">
+                    <span className="text-xl md:text-2xl mb-1.5 md:mb-2 block">💧</span>
+                    <h4 className="font-semibold text-text text-xs md:text-base mb-1">{t('product.dissolvesFast')}</h4>
+                    <p className="text-text-light text-xs">
+                      {enrichedData.isVegan ? t('product.dissolvesDescVegan') : t('product.dissolvesDescWhey')}
+                    </p>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 md:p-4 border border-gray-100">
+                    <span className="text-xl md:text-2xl mb-1.5 md:mb-2 block">🧾</span>
+                    <h4 className="font-semibold text-text text-xs md:text-base mb-1">{t('product.twoIngredientsCard')}</h4>
+                    <p className="text-text-light text-xs">{t('product.twoIngredientsDesc')}</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 md:p-4 border border-gray-100">
+                    <span className="text-xl md:text-2xl mb-1.5 md:mb-2 block">😌</span>
+                    <h4 className="font-semibold text-text text-xs md:text-base mb-1">{t('product.stomachCard')}</h4>
+                    <p className="text-text-light text-xs">{t('product.stomachDesc')}</p>
+                  </div>
+                </div>
+                {enrichedData.whatMakesItSpecial?.description && (
+                  <div className="bg-white rounded-lg p-3 md:p-5 border border-gray-100">
+                    <p className="text-text-light text-sm md:text-base leading-relaxed whitespace-pre-line">
+                      {enrichedData.whatMakesItSpecial.description}
+                    </p>
+                    {enrichedData.shortSummary && (
+                      <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-100">
+                        <p className="text-text font-semibold text-sm">{t('product.shortSummary')}</p>
+                        <p className="text-text-light text-sm mt-1 whitespace-pre-line">{enrichedData.shortSummary}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </details>
         </div>
 

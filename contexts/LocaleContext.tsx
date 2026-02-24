@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useCallback, useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { getMessage } from '@/lib/i18n/messages'
 import type { Locale } from '@/lib/i18n/types'
 
@@ -12,7 +13,7 @@ function getStoredLocale(): Locale {
     .split('; ')
     .find((row) => row.startsWith(`${LOCALE_COOKIE}=`))
   const value = stored?.split('=')[1] as Locale | undefined
-  if (value && (value === 'de' || value === 'fr' || value === 'lb')) return value
+  if (value && (value === 'de' || value === 'en' || value === 'fr' || value === 'lb')) return value
   return 'de'
 }
 
@@ -29,6 +30,7 @@ type LocaleContextValue = {
 const LocaleContext = createContext<LocaleContextValue | null>(null)
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter()
   const [locale, setLocaleState] = useState<Locale>('de')
   const [mounted, setMounted] = useState(false)
 
@@ -43,7 +45,8 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     if (typeof window !== 'undefined') {
       window.document.documentElement.lang = newLocale === 'lb' ? 'lb' : newLocale
     }
-  }, [])
+    router.refresh()
+  }, [router])
 
   useEffect(() => {
     if (!mounted) return

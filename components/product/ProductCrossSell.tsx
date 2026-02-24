@@ -86,7 +86,7 @@ export function ProductCrossSell({ currentHandle, crossSellProducts }: ProductCr
             <div className="flex items-center justify-between">
               <div className="flex flex-wrap gap-1">
                 {product.isVegan && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-50 text-green-700">Vegan</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-green-50 text-green-700">{t('product.veganBadge')}</span>
                 )}
               </div>
               <span className="text-accent text-xs md:text-sm font-semibold group-hover:underline">

@@ -66,3 +66,79 @@
     @apply py-12 md:py-16 lg:py-20;
   }
 }
+
+/* ─── B2B Page: Formatierung & UI/UX ─── */
+.b2b {
+  --b2b-dark: #1a1a1a;
+  --b2b-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --b2b-card-shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --b2b-radius: 1rem;
+  --b2b-radius-lg: 1.25rem;
+}
+
+.b2b .b2b-badge {
+  @apply inline-block text-[11px] font-semibold uppercase tracking-[0.12em] px-3 py-1.5 rounded-full;
+}
+
+.b2b .b2b-section-title {
+  @apply text-2xl md:text-3xl lg:text-4xl font-bold text-text leading-tight tracking-tight;
+}
+
+.b2b .b2b-section-sub {
+  @apply text-text-light text-sm md:text-base leading-relaxed max-w-xl;
+}
+
+.b2b .b2b-card {
+  @apply rounded-2xl border border-gray-100 bg-white transition-all duration-300;
+  box-shadow: var(--b2b-card-shadow);
+}
+
+.b2b .b2b-card:hover {
+  box-shadow: var(--b2b-card-shadow-hover);
+  border-color: rgba(107, 142, 111, 0.2);
+}
+
+.b2b .b2b-card-dark {
+  @apply rounded-2xl text-white;
+  background-color: var(--b2b-dark);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.b2b .b2b-input {
+  @apply w-full px-4 py-3 text-base text-text border border-gray-300 rounded-xl bg-white transition-all duration-200;
+  min-height: 44px;
+}
+
+.b2b .b2b-input::placeholder {
+  @apply text-text-muted;
+}
+
+.b2b .b2b-input:focus {
+  @apply outline-none border-accent ring-2 ring-accent/20;
+}
+
+.b2b .b2b-input:hover:not(:focus) {
+  @apply border-gray-400;
+}
+
+.b2b .b2b-label {
+  @apply block text-sm font-semibold text-text mb-2;
+}
+
+.b2b .b2b-btn-secondary {
+  @apply inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold text-base border-2 border-gray-400 text-white transition-all duration-200;
+  min-height: 48px;
+}
+
+.b2b .b2b-btn-secondary:hover {
+  @apply border-accent-light bg-accent-light/10 text-white;
+}
+
+.b2b .b2b-trust-dot {
+  @apply w-1.5 h-1.5 rounded-full bg-accent-light flex-shrink-0;
+}
+
+.b2b .b2b-hero-bg {
+  background-color: var(--b2b-dark);
+  background-image: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(107, 142, 111, 0.08) 0%, transparent 55%);
+}

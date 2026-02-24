@@ -5,6 +5,15 @@ export interface ProductNutrition {
   fat: number
 }
 
+export interface NarrativeSection {
+  titleKey?: string
+  bodyKey?: string
+  /** Pipe-separated bullet points, split in component via '|' */
+  bulletsKey?: string
+  closingKey?: string
+  pullquoteKey?: string
+}
+
 export interface ProductInfo {
   title: string
   handle: string
@@ -21,6 +30,9 @@ export interface ProductInfo {
   nutrition: ProductNutrition
   isVegan?: boolean
   isHypoallergenic?: boolean
+  /** i18n key for the accordion summary title */
+  narrativeSectionTitleKey?: string
+  narrativeSections?: NarrativeSection[]
 }
 
 export const productData: Record<string, ProductInfo> = {
@@ -28,15 +40,15 @@ export const productData: Record<string, ProductInfo> = {
     title: 'Erbsenprotein',
     handle: 'erbsenprotein',
     tagline: 'Erbsenprotein neu gedacht.',
-    description: `10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.
+    description: `Löst sich sofort und vollständig auf – einfach einrühren, kein Shaker nötig.
 
 Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl – ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.
+Durch den Erhalt der nativen Proteinstruktur: maximale Darmruhe und Sättigungseffekt.
 
 🌿 Rein pflanzlich. Vollständig vegan. Kein Gel, kein Schleim, kein Maskieren.`,
     keyPoints: [
-      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Löst sich sofort und vollständig auf – ohne Shaker',
       'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
       'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan'
@@ -45,10 +57,10 @@ Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garant
       title: 'Was es besonders macht',
       description: `Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.`
+Durch den Erhalt der nativen Proteinstruktur: maximale Darmruhe und Sättigungseffekt.`
     },
     result: [
-      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Löst sich sofort und vollständig auf – ohne Shaker',
       'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
       'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan'
@@ -75,15 +87,15 @@ Wir verkaufen funktionierendes, pflanzliches Protein.`,
     title: 'Reisprotein',
     handle: 'reisprotein',
     tagline: 'Reisprotein neu gedacht.',
-    description: `10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.
+    description: `Löst sich sofort und vollständig auf – einfach einrühren, kein Shaker nötig.
 
 Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl – ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.
+Durch den Erhalt der nativen Proteinstruktur: maximale Darmruhe und Sättigungseffekt.
 
 🌿 Rein pflanzlich. Vollständig vegan. Allergenarm. Kein Gel, kein Schleim, kein Maskieren.`,
     keyPoints: [
-      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Löst sich sofort und vollständig auf – ohne Shaker',
       'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
       'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan, hypoallergen'
@@ -92,10 +104,10 @@ Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garant
       title: 'Was es besonders macht',
       description: `Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.`
+Durch den Erhalt der nativen Proteinstruktur: maximale Darmruhe und Sättigungseffekt.`
     },
     result: [
-      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Löst sich sofort und vollständig auf – ohne Shaker',
       'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
       'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan, hypoallergen'
@@ -123,15 +135,15 @@ Wir verkaufen funktionierendes, veganes Protein.`,
     title: '70% Erbsen- & 30% Reisprotein',
     handle: 'vegan-pea-rice-blend',
     tagline: 'Pflanzliches Protein neu gedacht.',
-    description: `10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.
+    description: `Löst sich sofort und vollständig auf – einfach einrühren, kein Shaker nötig.
 
 Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl – ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.
+Durch den Erhalt der nativen Proteinstruktur: maximale Darmruhe und Sättigungseffekt.
 
 🌿 Rein pflanzlich. Vollständig vegan. Kein Gel, kein Schleim, kein Maskieren.`,
     keyPoints: [
-      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Löst sich sofort und vollständig auf – ohne Shaker',
       'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
       'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan'
@@ -140,10 +152,10 @@ Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garant
       title: 'Was es besonders macht',
       description: `Wir wandeln sandige, erdige Noten in ein sauberes Mundgefühl ohne jegliche Aromastoffe oder Süßungs-Chemie.
 
-Metabolische Überlegenheit: Durch den Erhalt der nativen Proteinstruktur garantieren wir maximale Darmruhe und einen Sättigungseffekt, der marktübliche Isolate übertrifft.`
+Durch den Erhalt der nativen Proteinstruktur: maximale Darmruhe und Sättigungseffekt.`
     },
     result: [
-      '10-Sekunden-Garantie: Vollständige Dispergierung ohne Shaker. Einfach einrühren.',
+      'Löst sich sofort und vollständig auf – ohne Shaker',
       'Sauberes Mundgefühl – ohne Aromastoffe oder Süßungs-Chemie',
       'Maximale Darmruhe & Sättigungseffekt durch native Proteinstruktur',
       '100% pflanzlich, 100% vegan'
@@ -204,7 +216,37 @@ Wir verkaufen funktionierendes Protein.`,
       protein: 72.7,
       carbs: 14.3,
       fat: 5.5
-    }
+    },
+    narrativeSectionTitleKey: 'product.wpcNarrative.sectionTitle',
+    narrativeSections: [
+      {
+        bodyKey: 'product.wpcNarrative.introBody',
+        bulletsKey: 'product.wpcNarrative.introBullets',
+        closingKey: 'product.wpcNarrative.introClosing',
+      },
+      {
+        titleKey: 'product.wpcNarrative.whyTitle',
+        bodyKey: 'product.wpcNarrative.whyBody',
+        bulletsKey: 'product.wpcNarrative.whyBullets',
+        closingKey: 'product.wpcNarrative.whyClosing',
+      },
+      {
+        titleKey: 'product.wpcNarrative.physicalTitle',
+        bodyKey: 'product.wpcNarrative.physicalBody',
+        bulletsKey: 'product.wpcNarrative.physicalBullets',
+        closingKey: 'product.wpcNarrative.physicalClosing',
+      },
+      {
+        titleKey: 'product.wpcNarrative.feelTitle',
+        bulletsKey: 'product.wpcNarrative.feelBullets',
+        pullquoteKey: 'product.wpcNarrative.feelPullquote',
+      },
+      {
+        titleKey: 'product.wpcNarrative.categoryTitle',
+        bodyKey: 'product.wpcNarrative.categoryBody',
+        closingKey: 'product.wpcNarrative.categoryClosing',
+      },
+    ],
   }
 }
 

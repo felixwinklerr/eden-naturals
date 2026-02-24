@@ -7,16 +7,16 @@ export function ComparisonSection() {
   const t = useTranslations()
 
   const comparisonData = [
-    { featureKey: 'home.comparison.ingredients', standard: '15-23', eden: '2', highlight: true },
-    { featureKey: 'home.comparison.eNumbers', standard: '3-6', eden: '0', highlight: true },
-    { featureKey: 'home.comparison.aromasSweeteners', standard: '1-3', eden: '0', highlight: false },
-    { featureKey: 'home.comparison.lecithin', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: false },
-    { featureKey: 'home.comparison.shakerRequired', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: true },
+    { featureKey: 'home.comparison.ingredients', standard: 'home.comparison.ingredientsStandard', eden: '2', highlight: true },
+    { featureKey: 'home.comparison.eNumbers', standard: 'home.comparison.eNumbersStandard', eden: '0', highlight: true },
+    { featureKey: 'home.comparison.aromasSweeteners', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: false },
+    { featureKey: 'home.comparison.lecithin', standard: 'home.comparison.often', eden: 'home.comparison.no', highlight: false },
+    { featureKey: 'home.comparison.solubility', standard: 'home.comparison.solubilityStandard', eden: 'home.comparison.solubilityEden', highlight: true },
     { featureKey: 'home.comparison.bloating', standard: 'home.comparison.often', eden: 'home.comparison.rare', highlight: false },
     { featureKey: 'home.comparison.stomach', standard: 'home.comparison.restless', eden: 'home.comparison.calm', highlight: false },
     { featureKey: 'home.comparison.energyStability', standard: 'home.comparison.unstable', eden: 'home.comparison.stable', highlight: false },
-    { featureKey: 'home.comparison.steps', standard: '8-10', eden: '3', highlight: true },
-    { featureKey: 'home.comparison.pricePerKg', standard: '€18-28', eden: '€72', highlight: false },
+    { featureKey: 'home.comparison.steps', standard: 'home.comparison.stepsStandard', eden: '2–3', highlight: true },
+    { featureKey: 'home.comparison.pricePerKg', standard: '€15–25', eden: 'ab €54/kg', highlight: false },
   ]
 
   return (

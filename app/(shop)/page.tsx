@@ -20,9 +20,14 @@ export default async function HomePage() {
   )
   const productImages = productResults.map((res) => {
     const p = res?.product
-    if (!p?.images?.edges?.[0]?.node) return { handle: p?.handle ?? '', imageUrl: undefined, imageAlt: p?.title }
-    const node = p.images.edges[0].node
-    return { handle: p.handle, imageUrl: node.url, imageAlt: node.altText ?? p.title }
+    const node = p?.images?.edges?.[0]?.node
+    return {
+      handle: p?.handle ?? '',
+      imageUrl: node?.url,
+      imageAlt: node?.altText ?? p?.title,
+      priceAmount: p?.priceRange?.minVariantPrice?.amount as string | undefined,
+      priceCurrency: (p?.priceRange?.minVariantPrice?.currencyCode ?? 'EUR') as string,
+    }
   })
 
   return (

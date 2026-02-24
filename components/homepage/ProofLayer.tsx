@@ -8,8 +8,8 @@ export function ProofLayer() {
   const proofPoints = [
     { icon: '🧪', stat: '2', labelKey: 'home.proof.ingredients', descKey: 'home.proof.ingredientsOther' },
     { icon: '⚡', stat: '0', labelKey: 'home.proof.eNumbers', descKey: 'home.proof.eNumbersOther' },
-    { icon: '⚙️', stat: '3', labelKey: 'home.proof.steps', descKey: 'home.proof.stepsOther' },
-    { icon: '💧', stat: '10s', labelKey: 'home.proof.noShaker', descKey: 'home.proof.noShakerDesc' },
+    { icon: '⚙️', stat: '2–3', labelKey: 'home.proof.steps', descKey: 'home.proof.stepsOther' },
+    { icon: '💧', stat: '✓', labelKey: 'home.proof.dissolves', descKey: 'home.proof.dissolvesDesc' },
   ]
 
   return (

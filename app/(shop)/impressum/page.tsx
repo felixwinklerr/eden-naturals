@@ -18,9 +18,9 @@ export default async function ImpressumPage() {
             <strong>{t('pages.impressum.contact')}</strong><br />
             {t('pages.impressum.phone')}<br />
             {t('pages.impressum.emailLabel')}{' '}
-            <a href="mailto:info@hoerentfernung.lu" className="text-accent hover:underline">info@hoerentfernung.lu</a><br />
+            <a href={`mailto:${t('pages.impressum.emailAddress')}`} className="text-accent hover:underline">{t('pages.impressum.emailAddress')}</a><br />
             {t('pages.impressum.webLabel')}{' '}
-            <a href="https://www.hoerentfernung.lu" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">www.hoerentfernung.lu</a>
+            <a href={`https://${t('pages.impressum.website')}`} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">{t('pages.impressum.website')}</a>
           </p>
           <p>
             <strong>{t('pages.impressum.managingDirector')}</strong><br />

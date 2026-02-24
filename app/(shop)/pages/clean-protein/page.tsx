@@ -5,11 +5,11 @@ export default async function CleanProteinLandingPage() {
   const { t } = await getServerTranslations()
 
   const tableRows: { featureKey: string; standard: string; eden: string }[] = [
-    { featureKey: 'rowIngredients', standard: '15-23', eden: '2' },
-    { featureKey: 'rowENumbers', standard: '3-6', eden: '0' },
+    { featureKey: 'rowIngredients', standard: t('pages.landingClean.ingredientsStandard'), eden: '2' },
+    { featureKey: 'rowENumbers', standard: t('pages.landingClean.eNumbersStandard'), eden: '0' },
     { featureKey: 'rowAromas', standard: t('pages.landingClean.yes'), eden: t('pages.landingClean.no') },
     { featureKey: 'rowLecithin', standard: t('pages.landingClean.yes'), eden: t('pages.landingClean.no') },
-    { featureKey: 'rowSweeteners', standard: '1-3', eden: '0' },
+    { featureKey: 'rowSweeteners', standard: t('pages.landingClean.yes'), eden: '0' },
     { featureKey: 'dissolvesNoShaker', standard: t('pages.landingClean.no'), eden: t('pages.landingClean.yes') },
   ]
 
@@ -69,8 +69,8 @@ export default async function CleanProteinLandingPage() {
                       <p className="text-xs text-accent font-semibold">{t('pages.landingClean.twoIngredients')}</p>
                     </div>
                     <ul className="text-xs text-text-light text-left space-y-1">
-                      <li>• Protein</li>
-                      <li>• Veredelung</li>
+                      <li>• {t('pages.landingClean.ingredient1')}</li>
+                      <li>• {t('pages.landingClean.ingredient2')}</li>
                       <li className="text-green-600">• {t('pages.landingClean.thatsIt')}</li>
                     </ul>
                   </div>

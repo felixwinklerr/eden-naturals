@@ -6,14 +6,14 @@ export function ProductComparison() {
   const t = useTranslations()
 
   const rows = [
-    { featureKey: 'home.comparison.ingredients', standard: '15-23', eden: '2', highlight: true },
-    { featureKey: 'home.comparison.eNumbers', standard: '3-6', eden: '0', highlight: true },
-    { featureKey: 'product.sweeteners', standard: '1-3', eden: '0', highlight: false },
-    { featureKey: 'home.comparison.lecithin', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: false },
+    { featureKey: 'home.comparison.ingredients', standard: 'home.comparison.ingredientsStandard', eden: '2', highlight: true },
+    { featureKey: 'home.comparison.eNumbers', standard: 'home.comparison.eNumbersStandard', eden: '0', highlight: true },
+    { featureKey: 'product.sweeteners', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: false },
+    { featureKey: 'home.comparison.lecithin', standard: 'home.comparison.often', eden: 'home.comparison.no', highlight: false },
     { featureKey: 'product.aromas', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: false },
-    { featureKey: 'home.comparison.shakerRequired', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: true },
-    { featureKey: 'home.comparison.steps', standard: '8-10', eden: '3', highlight: false },
-    { featureKey: 'home.comparison.pricePerKg', standard: '€18-28', eden: '€72', highlight: false },
+    { featureKey: 'home.comparison.solubility', standard: 'home.comparison.solubilityStandard', eden: 'home.comparison.solubilityEden', highlight: true },
+    { featureKey: 'home.comparison.steps', standard: 'home.comparison.stepsStandard', eden: '2–3', highlight: false },
+    { featureKey: 'home.comparison.pricePerKg', standard: '€15–25', eden: 'ab €54/kg', highlight: false },
   ]
 
   return (

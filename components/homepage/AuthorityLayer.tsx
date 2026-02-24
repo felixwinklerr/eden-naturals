@@ -23,15 +23,27 @@ export function AuthorityLayer() {
               {t('home.authority.intro')}
             </p>
             <div className="space-y-3 mb-6">
+              {/* Standard with flavoring */}
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 bg-red-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-red-500 text-sm font-bold">✕</span>
                 </div>
                 <div>
-                  <p className="text-text font-semibold text-sm md:text-base">{t('home.authority.standardTitle')}</p>
-                  <p className="text-text-light text-xs md:text-sm">{t('home.authority.standardDesc')}</p>
+                  <p className="text-text font-semibold text-sm md:text-base">{t('home.authority.standardChemTitle')}</p>
+                  <p className="text-text-light text-xs md:text-sm">{t('home.authority.standardChemDesc')}</p>
                 </div>
               </div>
+              {/* Standard natural - poor solubility */}
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-orange-400 text-sm font-bold">≈</span>
+                </div>
+                <div>
+                  <p className="text-text font-semibold text-sm md:text-base">{t('home.authority.standardNatTitle')}</p>
+                  <p className="text-text-light text-xs md:text-sm">{t('home.authority.standardNatDesc')}</p>
+                </div>
+              </div>
+              {/* Eden */}
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
                   <span className="text-green-600 text-sm font-bold">✓</span>
