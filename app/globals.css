@@ -15,6 +15,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 68px; /* sticky header height */
+  }
   body {
     @apply bg-primary text-text antialiased;
     font-family: 'Inter', system-ui, sans-serif;
@@ -64,6 +68,9 @@
   
   .section-padding {
     @apply py-12 md:py-16 lg:py-20;
+  }
+  .section-padding-lg {
+    @apply py-16 md:py-24 lg:py-28;
   }
 }
 
@@ -140,5 +147,8 @@
 
 .b2b .b2b-hero-bg {
   background-color: var(--b2b-dark);
-  background-image: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(107, 142, 111, 0.08) 0%, transparent 55%);
+  /* Leichter Grün-Verlauf von oben (Markenfarbe), unten etwas tiefer */
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(107, 142, 111, 0.14) 0%, transparent 50%),
+    linear-gradient(180deg, var(--b2b-dark) 0%, #111 100%);
 }

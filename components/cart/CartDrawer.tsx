@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useCart } from '@/contexts/CartContext'
 import { useCartDrawer } from '@/contexts/CartDrawerContext'
 import { useTranslations } from '@/contexts/LocaleContext'
@@ -14,6 +15,7 @@ export function CartDrawer() {
   const { cart, loading, refreshCart, updateLineQuantity } = useCart()
   const [updatingLineId, setUpdatingLineId] = useState<string | null>(null)
   const t = useTranslations()
+  const router = useRouter()
 
   useEffect(() => {
     if (cart && cart.totalQuantity > 0) refreshCart()
@@ -24,6 +26,21 @@ export function CartDrawer() {
   const subtotal = cart ? parseFloat(cart.cost.totalAmount.amount) : 0
   const freeShippingThreshold = 75
   const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal)
+
+  const handleWalletCheckout = () => {
+    if (!cart || cartItems.length === 0) return
+
+    const currencyCode = cart.cost.totalAmount.currencyCode || 'EUR'
+    trackInitiateCheckout(subtotal, currencyCode, cartItems.length)
+
+    if (cart.checkoutUrl) {
+      window.location.href = cart.checkoutUrl
+    } else {
+      router.push('/checkout')
+    }
+
+    closeDrawer()
+  }
 
   return (
     <>
@@ -180,10 +197,18 @@ export function CartDrawer() {
               <div className="space-y-2">
                 <p className="text-xs text-text-light text-center">{t('cart.orPayFaster')}</p>
                 <div className="grid grid-cols-2 gap-2">
-                  <button className="border border-gray-300 rounded-lg py-3 text-sm hover:bg-gray-50 font-medium" style={{ minHeight: '44px' }}>
+                  <button
+                    className="border border-gray-300 rounded-lg py-3 text-sm hover:bg-gray-50 font-medium"
+                    style={{ minHeight: '44px' }}
+                    onClick={handleWalletCheckout}
+                  >
                     {t('cart.applePay')}
                   </button>
-                  <button className="border border-gray-300 rounded-lg py-3 text-sm hover:bg-gray-50 font-medium" style={{ minHeight: '44px' }}>
+                  <button
+                    className="border border-gray-300 rounded-lg py-3 text-sm hover:bg-gray-50 font-medium"
+                    style={{ minHeight: '44px' }}
+                    onClick={handleWalletCheckout}
+                  >
                     {t('cart.paypal')}
                   </button>
                 </div>
