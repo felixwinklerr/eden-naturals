@@ -98,10 +98,7 @@ export default function B2BPage() {
     company: '',
     email: '',
     phone: '',
-    businessType: '',
-    region: '',
     quantity: '',
-    message: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -137,7 +134,7 @@ export default function B2BPage() {
             href="#partner"
             className="btn-primary w-full text-base py-4 rounded-xl min-h-[52px] text-center block"
           >
-            Partner werden – Konditionen anfragen
+            Partner werden
           </a>
         </div>
       </div>
@@ -157,78 +154,88 @@ export default function B2BPage() {
               Partnerbereich
             </span>
           </Link>
-          <div className="flex items-center gap-3">
-            <a
-              href="#konditionen"
-              className="hidden sm:inline-flex items-center justify-center text-sm font-semibold text-text-light hover:text-accent transition-colors px-3 py-2"
-            >
-              Konditionen
-            </a>
-            <a
-              href="#partner"
-              className="btn-primary text-sm px-5 py-2.5 rounded-xl min-h-[40px]"
-            >
-              Partner werden
-            </a>
-          </div>
+          <a
+            href="#partner"
+            className="btn-primary text-sm px-5 py-2.5 rounded-xl min-h-[40px]"
+          >
+            Partner werden
+          </a>
         </div>
       </header>
 
       {/* ─── 1. HERO ─── */}
       <section className="b2b-hero-bg text-white">
-        <div className="container-custom max-w-6xl py-20 md:py-28 lg:py-36">
-          <div className="grid lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_360px] gap-12 lg:gap-20 items-center">
+        <div className="container-custom max-w-6xl py-20 md:py-28 lg:py-32">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
 
-            {/* Left: Text */}
-            <div>
-              <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.22em] mb-5">
-                Für Fitnessstudios · Händler · Apotheken · Personal Trainer
+            {/* Left */}
+            <div className="flex flex-col">
+              <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.22em] mb-6">
+                Für Studios · Händler · Apotheken · Marken
               </p>
-              <h1 className="text-[2.5rem] sm:text-5xl md:text-[3.5rem] lg:text-[4rem] font-bold leading-[1.05] tracking-tight mb-6 text-balance">
-                Unvergleichbar.<br />
-                <span className="text-accent-light">Echte Differenzierung.<br />Echte Marge.</span>
+              <h1 className="text-[2.6rem] sm:text-5xl md:text-[3.6rem] lg:text-[3.8rem] font-bold leading-[1.05] tracking-tight mb-5 text-balance">
+                Ihre Proteinmarke.<br />
+                <span className="text-accent-light">Neu gedacht.</span>
               </h1>
-              <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-3 max-w-lg">
-                Protein ohne Lecithin. Ohne Emulgatoren. Ohne Zusatzstoffe.
+              <p className="text-gray-200 text-lg leading-relaxed mb-1 max-w-md">
+                Premium-Positionierung statt Preiskampf.
               </p>
-              <p className="text-gray-400 text-base mb-3 max-w-lg">
-                Physikalisch strukturiert statt chemisch verändert.
-              </p>
-              <p className="text-gray-400 text-base mb-3 max-w-lg">
-                Keine Vergleichbarkeit. Kein Preiskampf. Keine Austauschbarkeit.
-              </p>
-              <p className="text-accent-light font-semibold text-base md:text-lg mb-8 max-w-lg">
-                45 % Marge ab der ersten Einheit.
+              <p className="text-gray-400 text-sm mb-6 max-w-md">
+                Ab 45 % bis zu 55 % Handelsspanne · Clean Label · White Label möglich.
               </p>
 
-              <a
-                href="#partner"
-                className="btn-primary text-lg px-10 py-5 rounded-2xl min-h-[58px] inline-flex items-center justify-center font-bold w-full sm:w-auto shadow-lg shadow-accent/30"
-              >
-                Partner werden
-              </a>
+              {/* Key figure: 45 % Marge */}
+              <div className="hidden md:flex items-end gap-4 mb-10">
+                <span className="text-accent-light font-black text-6xl lg:text-7xl leading-none tabular-nums">
+                  45%
+                </span>
+                <div className="flex flex-col gap-1 text-[11px] tracking-[0.18em] uppercase text-gray-400">
+                  <span>Ab 45 % bis 55 %</span>
+                  <span>handelsspanne · ab 1 karton</span>
+                </div>
+              </div>
 
-              {/* Mobile: Marge pro 660 g Packung */}
-              <div className="lg:hidden mt-10 rounded-2xl overflow-hidden border-2 border-accent/40 bg-accent/15 p-6">
-                <p className="text-[11px] text-gray-500 uppercase tracking-widest mb-2">Marge pro 660-g-Packung</p>
-                <p className="text-accent-light font-bold text-3xl tabular-nums mb-1">18,81 €</p>
-                <p className="text-gray-500 text-xs">Rohertrag z. B. Whey WPC 80 · 45 % auf UVP</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="#partner"
+                  className="btn-primary text-base px-8 py-3.5 rounded-xl min-h-[50px] inline-flex items-center justify-center font-semibold w-full sm:w-auto"
+                >
+                  Partner werden
+                </a>
+                <a
+                  href="#partner"
+                  className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl min-h-[50px] w-full sm:w-auto border border-white/20 text-sm font-medium text-gray-300 hover:border-white/40 hover:text-white transition-colors"
+                >
+                  Muster anfordern
+                </a>
+              </div>
+
+              {/* Mobile product image */}
+              <div className="lg:hidden mt-10 flex justify-center pb-4">
+                <Image
+                  src="/Your Logo Here.png"
+                  alt="Ihr Logo hier – Standbodenbeutel"
+                  width={700}
+                  height={900}
+                  quality={95}
+                  className="w-56 h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
+                  style={{ filter: 'brightness(0.96) contrast(1.06) saturate(0.85)' }}
+                />
               </div>
             </div>
 
-            {/* Right: Marge pro 660 g – Desktop */}
-            <div className="hidden lg:block rounded-2xl overflow-hidden border-2 border-accent/50 bg-accent/20 shadow-2xl shadow-black/20 p-8 xl:p-10">
-              <p className="text-[11px] font-semibold text-accent-light/90 uppercase tracking-[0.2em] mb-6">
-                45 % Marge ab der ersten Einheit
-              </p>
-              <p className="text-accent-light font-black text-[7rem] xl:text-[8rem] leading-none tabular-nums mb-2">
-                45%
-              </p>
-              <div className="border-t-2 border-accent/30 pt-6 mt-6">
-                <p className="text-[11px] text-gray-500 uppercase tracking-widest mb-2">Marge pro 660-g-Packung</p>
-                <p className="text-white font-bold text-4xl xl:text-5xl tabular-nums">18,81 €</p>
-                <p className="text-gray-500 text-sm mt-2">Rohertrag z. B. Whey WPC 80 · 45 % auf UVP</p>
-              </div>
+            {/* Right: product bag, no frame, no background */}
+            <div className="hidden lg:flex items-center justify-center py-10 px-4">
+              <Image
+                src="/Your Logo Here.png"
+                alt="Ihr Logo hier – Standbodenbeutel"
+                width={700}
+                height={900}
+                quality={95}
+                priority
+                className="w-full max-w-[420px] h-auto drop-shadow-[0_60px_120px_rgba(0,0,0,0.7)]"
+                style={{ filter: 'brightness(0.96) contrast(1.06) saturate(0.85)' }}
+              />
             </div>
           </div>
         </div>
@@ -254,24 +261,29 @@ export default function B2BPage() {
         </div>
       </div>
 
-      {/* ─── 2. PROBLEM ─── */}
+      {/* ─── 2. PROBLEM IM MARKT ─── */}
       <section className="section-padding-lg bg-white">
         <div className="container-custom max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-start">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-start">
             <div>
-              <p className="text-[11px] font-semibold text-red-500 uppercase tracking-[0.22em] mb-5">
-                Das Problem
+              <p className="text-[11px] font-semibold text-red-500 uppercase tracking-[0.22em] mb-4">
+                Problem im Markt
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight mb-6">
-                Der Proteinmarkt ist austauschbar.
+              <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight mb-4">
+                Preiskampf statt Positionierung.
               </h2>
-              <p className="text-text-light text-base leading-relaxed">
-                Vergleichbarkeit → Preisdruck → niedrige Margen.
+              <p className="text-text-light text-base">
+                Vergleichbare Produkte führen zu Preiskampf, Rabattaktionen und geringer Differenzierung.
               </p>
             </div>
-            <div className="space-y-2">
-              {['Gleiche Inhaltsstoffe', 'Gleiche Claims', 'Preiskampf'].map((label) => (
-                <div key={label} className="flex items-center gap-4 px-5 py-3.5 bg-red-50 rounded-xl">
+            <div className="space-y-1.5">
+              {[
+                'Preiskampf im Proteinmarkt',
+                'Austauschbare Produkte',
+                'Abhängigkeit von Geschmacksmarketing',
+                'Geringe Differenzierung',
+              ].map((label) => (
+                <div key={label} className="flex items-center gap-3 px-4 py-3 bg-red-50 rounded-xl">
                   <span className="text-red-400 font-bold flex-shrink-0" aria-hidden>✕</span>
                   <span className="text-text text-sm font-medium">{label}</span>
                 </div>
@@ -281,7 +293,7 @@ export default function B2BPage() {
         </div>
       </section>
 
-      {/* ─── 3. LÖSUNG ─── */}
+      {/* ─── 3. UNSERE LÖSUNG ─── */}
       <section className="section-padding-lg bg-gray-50">
         <div className="container-custom max-w-5xl">
           <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-start">
@@ -290,13 +302,17 @@ export default function B2BPage() {
                 Die Lösung
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight mb-6">
-                Eden: eigene Kategorie.
+                Neue Kategorie im Proteinmarkt.
               </h2>
               <ul className="space-y-3">
                 {[
-                  'Funktion aus Struktur – nicht aus Zusatzstoffen',
-                  'Kein Lecithin, keine Emulgatoren',
-                  'Nicht vergleichbar mit Standardprodukten',
+                  'Ohne Lecithin',
+                  'Ohne Emulgatoren',
+                  'Ohne E-Nummern',
+                  'Physikalisch optimierte Struktur',
+                  'Sehr gute Löslichkeit',
+                  'Schnell im Glas dispergiert (Löffel reicht)',
+                  'Premium-Positionierung',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-0.5" aria-hidden>
@@ -321,31 +337,36 @@ export default function B2BPage() {
         </div>
       </section>
 
-      {/* ─── 4. HÄNDLERGEWINN ─── */}
+      {/* ─── 4. IHRE MARGE ─── */}
       <section id="konditionen" className="section-padding-lg bg-white">
         <div className="container-custom max-w-5xl">
           {/* Margen-Highlight: sofort sichtbar */}
           <div className="mb-12 rounded-2xl border-2 border-accent/40 bg-accent/10 p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-text tracking-tight mb-1">
-                Beispiel für Partner
+                Attraktive Handelsspanne
               </h2>
-              <p className="text-text-light text-sm">Alle 4 Produkte · 660 g · 45% Marge</p>
+              <p className="text-text-light text-sm">
+                Ab 45&nbsp;% – bis 55&nbsp;% Marge möglich · Premium-Preisniveau durchsetzbar · kein Discount-Produkt.
+              </p>
+              <ul className="mt-3 space-y-1.5 text-xs text-text-light">
+                <li>• Hohe Wiederkaufrate durch echte Produktzufriedenheit</li>
+              </ul>
             </div>
             <div className="flex items-center gap-8 md:gap-12">
               <div className="text-center">
-                <p className="text-accent font-black text-4xl md:text-5xl tabular-nums">45%</p>
+                <p className="text-accent font-black text-5xl md:text-6xl tabular-nums">45%</p>
                 <p className="text-text-light text-xs uppercase tracking-widest">Marge</p>
               </div>
               <div className="h-12 w-px bg-gray-200 hidden sm:block" aria-hidden />
               <div className="text-center">
                 <p className="text-accent font-bold text-2xl md:text-3xl tabular-nums">18,81 €</p>
-                <p className="text-text-light text-xs uppercase tracking-widest">Rohertrag/Stk.</p>
+                <p className="text-text-light text-xs uppercase tracking-widest">Rohertrag pro 660 g (bei UVP)</p>
               </div>
             </div>
           </div>
 
-          {/* Desktop: table */}
+          {/* Desktop: Beispielrechnung (klar & einfach) */}
           <div className="hidden md:block b2b-card overflow-hidden mb-6">
             <table className="w-full">
               <thead>
@@ -400,7 +421,7 @@ export default function B2BPage() {
           </div>
 
           {/* Mobile: cards */}
-          <div className="md:hidden space-y-3 mb-6">
+          <div className="md:hidden space-y-3">
             {PRODUCTS.map((p) => (
               <div key={p.name} className="b2b-card overflow-hidden">
                 {p.highlight && (
@@ -436,132 +457,203 @@ export default function B2BPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Beispielrechnung + Großmengen */}
-          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-            <div className="b2b-card p-6 md:p-7">
-              <p className="text-[11px] font-semibold text-text-light uppercase tracking-widest mb-5">
-                Beispiel: 1 Karton Whey WPC 80
-              </p>
-              <div className="space-y-2.5 text-sm mb-5">
-                <div className="flex justify-between">
-                  <span className="text-text-light">6 Stk. · Ihr EK</span>
-                  <span className="text-text tabular-nums font-medium">6 × 22,99 € = 137,94 €</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-text-light">6 Stk. · VK (UVP)</span>
-                  <span className="text-text tabular-nums font-medium">6 × 48,90 € = 293,40 €</span>
-                </div>
-              </div>
-              <div className="bg-accent/10 rounded-xl px-5 py-4 flex justify-between items-center">
-                <span className="font-semibold text-accent text-sm">Rohertrag gesamt</span>
-                <span className="font-extrabold text-accent text-2xl tabular-nums">112,86 €</span>
-              </div>
+      {/* ─── 5. WHITE LABEL / PRIVATE LABEL ─── */}
+      <section className="section-padding-lg bg-gray-50">
+        <div className="container-custom max-w-6xl">
+          <div className="mb-12 md:mb-16">
+            <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-4">
+              White Label & Private Label
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight">
+              Ihre Marke. Unsere Technologie.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] gap-10 md:gap-16 items-center">
+            <div className="b2b-card p-6 md:p-8">
+              <ul className="space-y-3">
+                {[
+                  'White Label möglich',
+                  'Private Label möglich',
+                  'Ihr Logo · Ihr Design',
+                  'Individuelles Verpackungskonzept',
+                  'Flexible Abnahmemengen',
+                  'Schnelle Markteinführung',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm md:text-base text-text-light">
+                    <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="b2b-card-dark p-6 md:p-7 flex flex-col justify-between gap-5">
-              <div>
-                <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-widest mb-3">
-                  Ab 1.000 Einheiten
-                </p>
-                <p className="text-white text-sm leading-relaxed">
-                  Individuelles Angebot mit Sonderkonditionen,
-                  Liefervereinbarungen und White-Label-Optionen.
-                </p>
-              </div>
-              <a
-                href="#partner"
-                className="btn-primary inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm"
-              >
-                Großmengen anfragen
-              </a>
+            <div className="flex items-center justify-center py-6 px-4">
+              <Image
+                src="/Your Logo Here.png"
+                alt="Your Brand Here – Standbodenbeutel"
+                width={600}
+                height={800}
+                quality={95}
+                className="w-full max-w-[340px] h-auto drop-shadow-[0_50px_110px_rgba(0,0,0,0.22)]"
+                style={{ filter: 'brightness(0.96) contrast(1.06) saturate(0.85)' }}
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── 5. PARTNER-VORTEILE ─── */}
-      <section className="section-padding-lg bg-gray-50">
+      {/* ─── 6. PRODUKTION & LOGISTIK ─── */}
+      <section className="section-padding-lg bg-white">
         <div className="container-custom max-w-5xl">
-          <div className="mb-12 md:mb-16">
+          <div className="mb-8 md:mb-10">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-4">
-              Für Partner
+              Produktion & Logistik
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight">
-              Ihr Vorteil
+              Zuverlässig & skalierbar.
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 gap-5 md:gap-6">
+          <div className="b2b-card p-6 md:p-8">
+            <ul className="space-y-3">
+              {[
+                'Produktion in Europa',
+                'Schnelle Lieferfähigkeit',
+                'Direkte Belieferung oder Zentrallager',
+                'Flexible Mengen je nach Bedarf',
+                'Muster verfügbar',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm md:text-base text-text-light">
+                  <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 7. FÜR WEN GEEIGNET ─── */}
+      <section className="section-padding-lg bg-gray-50">
+        <div className="container-custom max-w-5xl">
+          <div className="mb-8 md:mb-10">
+            <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-4">
+              Zielgruppen
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight">
+              Für wen geeignet?
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
             {[
-              { title: 'Differenzierung', desc: 'Eigene Kategorie – keine 1:1-Konkurrenz.' },
-              { title: 'Unvergleichbarkeit', desc: 'Nicht vergleichbar mit Standard-Protein.' },
-              { title: 'Stabile Margen', desc: '45% Rohertrag – ab dem ersten Karton.' },
-              { title: 'Keine Vergleichbarkeit mit Standardprodukten', desc: 'Kein Preiskampf. Keine Rabattspirale.' },
+              'Fitnessstudios',
+              'Online-Shops',
+              'Apotheken',
+              'Reformhäuser',
+              'Coaches',
+              'Eigene Marken',
+              'Vereine',
             ].map((item) => (
-              <div key={item.title} className="b2b-card p-6 md:p-7">
-                <h3 className="font-bold text-text text-lg mb-2 tracking-tight">
-                  {item.title}
-                </h3>
-                <p className="text-text-light text-sm">{item.desc}</p>
+              <div key={item} className="b2b-card py-3.5 px-4 text-sm font-medium text-text">
+                {item}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── 6. PHYSISCHER BEWEIS – Differenzierung visuell ─── */}
-      <section className="section-padding-lg b2b-hero-bg text-white">
+      {/* ─── 8. UPGRADE BESTEHENDER MARKEN ─── */}
+      <section className="section-padding-lg bg-white">
         <div className="container-custom max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
-            <div>
-              <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.22em] mb-5">
-                Nicht wie Standard-Protein
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-5">
-                Struktur statt Zusatzstoffe.
-              </h2>
-              <p className="text-gray-400 text-base mb-6">
-                Physikalisch optimiert. Im Glas sichtbar – dispergiert ohne Shaker.
-              </p>
-              <a href="#partner" className="text-accent-light text-sm font-semibold hover:underline">
-                Partner werden →
-              </a>
-            </div>
-            <div className="relative">
-              <div className="aspect-video rounded-2xl overflow-hidden bg-gray-800 shadow-2xl ring-2 ring-white/10">
-                <video
-                  src="/mixing-demo.mp4"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-cover"
-                  aria-label="Eden Protein: Dispergierung ohne Emulgatoren – anders als Standard-Protein"
-                >
-                  <source src="/mixing-demo.mp4" type="video/mp4" />
-                </video>
-              </div>
-              <p className="mt-4 text-center text-gray-500 text-xs">
-                Glas · Wasser · Löffel. Kein Shaker. Kein Klumpen.
-              </p>
-            </div>
+          <div className="mb-8 md:mb-10">
+            <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-4">
+              Upgrade bestehender Marken
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight">
+              Bestehende Produkte veredeln.
+            </h2>
+          </div>
+          <div className="b2b-card p-6 md:p-8">
+            <ul className="space-y-3">
+              {[
+                'Clean / Green Label Struktur',
+                'Upgrade auf High-Class-Niveau',
+                'Entkopplung vom Massenmarkt',
+                'Keine Abhängigkeit von Geschmacksmarketing',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm md:text-base text-text-light">
+                  <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* ─── 7. FORMULAR ─── */}
+      {/* ─── 6. PHYSISCHER BEWEIS – Dispergierungsbild direkt unter Headline ─── */}
+      <section className="section-padding-lg b2b-hero-bg text-white">
+        <div className="container-custom max-w-4xl">
+          <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.22em] mb-4">
+            Nicht wie Standard-Protein
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-8">
+            Struktur statt Zusatzstoffe.
+          </h2>
+          {/* Dispergierungsbild (Glas mit Wasser) direkt darunter */}
+          <div className="aspect-video rounded-2xl overflow-hidden bg-gray-800 shadow-2xl ring-2 ring-white/10 mb-8">
+            <video
+              src="/mixing-demo.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover"
+              aria-label="Dispergierung: Eden Protein im Glas – ohne Emulgatoren"
+            >
+              <source src="/mixing-demo.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="text-center">
+            <a href="#partner" className="btn-primary inline-flex items-center justify-center px-8 py-4 rounded-2xl min-h-[52px]">
+              Partner werden
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 9. STARKER CALL TO ACTION + FORMULAR ─── */}
       <section id="partner" className="section-padding-lg bg-white">
         <div className="container-custom max-w-3xl">
           <div className="text-center mb-10">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-5">
-              Jetzt starten
+              Jetzt B2B-Partner werden
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-text mb-3 tracking-tight">
-              Wollen Sie die Konditionen sehen?
+              Muster anfordern & B2B-Gespräch vereinbaren.
             </h2>
             <p className="text-text-light text-sm md:text-base max-w-md mx-auto">
               Sagen Sie uns kurz, welche Zielgruppe Sie bedienen und welche Region.
-              Sie erhalten Konditionen, Mindestmengen und Musteroptionen.
+              Sie erhalten Konditionen, Mindestmengen, Musteroptionen und einen Terminvorschlag für ein B2B-Gespräch.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
+              <a
+                href="#partner"
+                className="btn-primary px-7 py-3.5 rounded-xl min-h-[52px] text-base font-semibold"
+              >
+                Jetzt B2B-Partner werden
+              </a>
+              <a
+                href="mailto:b2b@eden-naturals.de"
+                className="px-7 py-3.5 rounded-xl min-h-[52px] text-sm font-semibold border border-accent/40 text-accent hover:bg-accent/5 transition-colors"
+              >
+                Muster anfordern
+              </a>
+            </div>
+            <p className="mt-4 text-xs text-text-light">
+              Direkte Ansprechpartner · Telefon &amp; E-Mail: <a href="mailto:b2b@eden-naturals.de" className="text-accent font-semibold hover:underline">b2b@eden-naturals.de</a>
             </p>
           </div>
 
@@ -621,66 +713,27 @@ export default function B2BPage() {
                   />
                 </div>
               </div>
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label htmlFor="businessType" className="b2b-label">Art des Unternehmens *</label>
-                  <select
-                    id="businessType" required
-                    value={formData.businessType}
-                    onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-                    className="b2b-input"
-                  >
-                    <option value="">Bitte wählen</option>
-                    <option value="studio">Fitnessstudio / Sport-Studio</option>
-                    <option value="handel">Händler / Supplement-Shop</option>
-                    <option value="trainer">Personal Trainer</option>
-                    <option value="apotheke">Apotheke / Health Retail</option>
-                    <option value="marke">Marke / White Label</option>
-                    <option value="sonstiges">Sonstiges</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="quantity" className="b2b-label">Geplante Menge</label>
-                  <select
-                    id="quantity"
-                    value={formData.quantity}
-                    onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                    className="b2b-input"
-                  >
-                    <option value="">Noch nicht sicher</option>
-                    <option value="muster">Erst Muster anfordern</option>
-                    <option value="6er">6er Karton (Einstieg)</option>
-                    <option value="12er">12er Karton (Mengenrabatt)</option>
-                    <option value="1000+">1.000+ Einheiten (Großmenge)</option>
-                  </select>
-                </div>
-              </div>
               <div>
-                <label htmlFor="region" className="b2b-label">Region / Standort</label>
-                <input
-                  type="text" id="region"
-                  placeholder="z.B. München, Österreich, DACH ..."
-                  value={formData.region}
-                  onChange={(e) => setFormData({ ...formData, region: e.target.value })}
+                <label htmlFor="quantity" className="b2b-label">Menge</label>
+                <select
+                  id="quantity"
+                  value={formData.quantity}
+                  onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
                   className="b2b-input"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="b2b-label">Kurze Beschreibung (optional)</label>
-                <textarea
-                  id="message" rows={4}
-                  placeholder="Welche Produkte interessieren Sie? Haben Sie White-Label-Interesse? Sonstiges..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="b2b-input min-h-[110px] resize-y"
-                />
+                >
+                  <option value="">Noch nicht sicher</option>
+                  <option value="muster">Erst Muster anfordern</option>
+                  <option value="6er">6er Karton (Einstieg)</option>
+                  <option value="12er">12er Karton (Mengenrabatt)</option>
+                  <option value="1000+">1.000+ Einheiten (Großmenge)</option>
+                </select>
               </div>
               <button
                 type="submit"
                 disabled={submitting}
                 className="btn-primary w-full text-base py-4 rounded-xl min-h-[52px] disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {submitting ? 'Wird gesendet...' : 'B2B Anfrage senden'}
+                {submitting ? 'Wird gesendet...' : 'Partner werden'}
               </button>
               <p className="text-xs text-text-light text-center">
                 * Pflichtfelder · Wir melden uns innerhalb von 1–2 Werktagen
