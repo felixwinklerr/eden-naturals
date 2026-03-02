@@ -5,6 +5,11 @@ const B2B_HOSTS = ['edenpartner.de', 'www.edenpartner.de']
 const B2B_DOMAIN = 'www.edenpartner.de' // Kanonische B2B-Domain (Vercel leitet edenpartner.de → www)
 
 export function middleware(request: NextRequest) {
+  // Lokal: Middleware aus, / und /b2b normal nutzbar
+  if (request.nextUrl.hostname === 'localhost' || process.env.NODE_ENV === 'development') {
+    return NextResponse.next()
+  }
+
   const host = request.nextUrl.hostname
   const pathname = request.nextUrl.pathname
   const isB2BHost = B2B_HOSTS.includes(host)

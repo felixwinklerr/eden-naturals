@@ -47,7 +47,7 @@ const PRODUCTS = [
 const FAQ_ITEMS = [
   {
     q: 'Wie hoch ist die Handelsspanne?',
-    a: '45% Rohertrag auf den UVP. Beim Whey WPC 80 (48,90 € UVP) ergibt das 18,81 € Rohertrag pro Einheit – ab dem ersten Karton. Bei Volumen ab 12er-Karton gibt es zusätzliche Staffelpreise.',
+    a: '45 % Standard ab 1 Karton bis 10 Karton. Bis 55 % bei Staffel, Volumen oder White-Label. Beim Whey WPC 80 (48,90 € UVP) z. B. 18,81 € Rohertrag pro 660 g bei 45 % – ab dem ersten Karton.',
   },
   {
     q: 'Wie viel muss ich mindestens bestellen?',
@@ -55,7 +55,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Wie schnell kann nachbestellt werden?',
-    a: 'Nachbestellung i.d.R. innerhalb von 5–7 Werktagen. Wir arbeiten mit stabiler Produktionskapazität – keine Engpässe, keine langen Vorlaufzeiten.',
+    a: 'Nachbestellung i.d.R. innerhalb von 5–7 Werktagen (bei Lagerware, je nach Region, ab Bestätigung). Wir arbeiten mit stabiler Produktionskapazität – keine Engpässe, keine langen Vorlaufzeiten.',
   },
   {
     q: 'Ist White Labeling möglich?',
@@ -181,7 +181,7 @@ export default function B2BPage() {
                 Premium-Positionierung statt Preiskampf.
               </p>
               <p className="text-gray-400 text-sm mb-6 max-w-md">
-                Ab 45 % bis zu 55 % Handelsspanne · Clean Label · White Label möglich.
+                45 % Standard ab 1 Karton · bis 55 % bei Staffel/Volumen/White-Label. Clean Label · White Label möglich.
               </p>
 
               {/* Key figure: 45 % Marge */}
@@ -190,8 +190,8 @@ export default function B2BPage() {
                   45%
                 </span>
                 <div className="flex flex-col gap-1 text-[11px] tracking-[0.18em] uppercase text-gray-400">
-                  <span>Ab 45 % bis 55 %</span>
-                  <span>handelsspanne · ab 1 karton</span>
+                  <span>Standard ab 1 Karton (bis 10 Karton)</span>
+                  <span>bis 55 % bei Staffel / White-Label</span>
                 </div>
               </div>
 
@@ -211,14 +211,14 @@ export default function B2BPage() {
               </div>
 
               {/* Mobile product image */}
-              <div className="lg:hidden mt-10 flex justify-center pb-4">
+              <div className="lg:hidden mt-10 flex justify-center pb-4 px-2">
                 <Image
                   src="/Your Logo Here.png"
                   alt="Ihr Logo hier – Standbodenbeutel"
                   width={700}
                   height={900}
                   quality={95}
-                  className="w-56 h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
+                  className="w-[min(320px,88vw)] max-w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
                   style={{ filter: 'brightness(0.96) contrast(1.06) saturate(0.85)' }}
                 />
               </div>
@@ -246,7 +246,7 @@ export default function B2BPage() {
         <div className="container-custom">
           <div className="flex flex-wrap justify-center items-center gap-x-7 gap-y-2">
             {[
-              '5–7 Tage Lieferzeit',
+              '5–7 Tage Lieferzeit*',
               'Einstieg ab 1 Karton',
               'Muster verfügbar',
               'Antwort innerhalb 24h',
@@ -258,6 +258,9 @@ export default function B2BPage() {
               </span>
             ))}
           </div>
+          <p className="text-center text-[10px] text-gray-600 mt-2">
+            * Lieferzeit bei Lagerware, je nach Region, ab Bestätigung.
+          </p>
         </div>
       </div>
 
@@ -347,7 +350,7 @@ export default function B2BPage() {
                 Attraktive Handelsspanne
               </h2>
               <p className="text-text-light text-sm">
-                Ab 45&nbsp;% – bis 55&nbsp;% Marge möglich · Premium-Preisniveau durchsetzbar · kein Discount-Produkt.
+                45&nbsp;% Standard ab 1 Karton bis 10 Karton. Bis 55&nbsp;% bei Staffel, Volumen oder White-Label. Premium-Preisniveau durchsetzbar · kein Discount-Produkt.
               </p>
               <ul className="mt-3 space-y-1.5 text-xs text-text-light">
                 <li>• Hohe Wiederkaufrate durch echte Produktzufriedenheit</li>
@@ -361,7 +364,8 @@ export default function B2BPage() {
               <div className="h-12 w-px bg-gray-200 hidden sm:block" aria-hidden />
               <div className="text-center">
                 <p className="text-accent font-bold text-2xl md:text-3xl tabular-nums">18,81 €</p>
-                <p className="text-text-light text-xs uppercase tracking-widest">Rohertrag pro 660 g (bei UVP)</p>
+                <p className="text-text-light text-xs uppercase tracking-widest">Rohertrag pro 660 g</p>
+                <p className="text-text-muted text-[10px] mt-0.5">(bei Verkauf zu UVP incl. MwSt)</p>
               </div>
             </div>
           </div>
@@ -371,7 +375,7 @@ export default function B2BPage() {
             <table className="w-full">
               <thead>
                 <tr className="bg-gray-50 border-b border-gray-100">
-                  {['Produkt', 'UVP (B2C brutto)', 'Ihr EK netto', 'Rohertrag / Stk.', 'Marge'].map((h, i) => (
+                  {['Produkt', 'Ihr EK netto', 'Rohertrag / Stk.', 'Marge', 'UVP (B2C, incl. MwSt)'].map((h, i) => (
                     <th
                       key={h}
                       className={`py-4 px-5 text-xs font-semibold text-text-light uppercase tracking-wider ${i === 0 ? 'text-left' : 'text-right'}`}
@@ -402,9 +406,6 @@ export default function B2BPage() {
                         )}
                       </div>
                     </td>
-                    <td className="py-5 px-5 text-right text-text text-sm tabular-nums">
-                      {p.b2cPrice.toFixed(2).replace('.', ',')} €
-                    </td>
                     <td className="py-5 px-5 text-right text-accent font-bold text-sm tabular-nums">
                       {p.ekNetto.toFixed(2).replace('.', ',')} €
                     </td>
@@ -413,6 +414,9 @@ export default function B2BPage() {
                     </td>
                     <td className="py-5 px-5 text-right text-accent font-extrabold text-xl tabular-nums">
                       {p.margin}%
+                    </td>
+                    <td className="py-5 px-5 text-right text-text-muted text-sm tabular-nums">
+                      {p.b2cPrice.toFixed(2).replace('.', ',')} €
                     </td>
                   </tr>
                 ))}
@@ -441,16 +445,16 @@ export default function B2BPage() {
                   </div>
                   <div className="space-y-1.5 text-sm">
                     <div className="flex justify-between py-1.5">
-                      <span className="text-text-light">UVP (B2C brutto)</span>
-                      <span className="text-text tabular-nums">{p.b2cPrice.toFixed(2).replace('.', ',')} €</span>
-                    </div>
-                    <div className="flex justify-between py-1.5">
                       <span className="text-text-light">Ihr EK netto</span>
                       <span className="text-accent font-bold tabular-nums">{p.ekNetto.toFixed(2).replace('.', ',')} €</span>
                     </div>
-                    <div className="flex justify-between py-2.5 border-t border-gray-100 mt-1">
+                    <div className="flex justify-between py-2 border-t border-gray-100 pt-2">
                       <span className="font-semibold text-text">Rohertrag / Stk.</span>
                       <span className="font-bold text-text tabular-nums">{p.grossProfit.toFixed(2).replace('.', ',')} €</span>
+                    </div>
+                    <div className="flex justify-between py-1.5">
+                      <span className="text-text-muted text-xs">UVP (B2C, incl. MwSt) – Beispiel</span>
+                      <span className="text-text-muted text-sm tabular-nums">{p.b2cPrice.toFixed(2).replace('.', ',')} €</span>
                     </div>
                   </div>
                 </div>
