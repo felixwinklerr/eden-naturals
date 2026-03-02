@@ -218,7 +218,7 @@ export default function B2BPage() {
                   width={700}
                   height={900}
                   quality={95}
-                  className="w-[min(320px,88vw)] max-w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
+                  className="w-[min(400px,94vw)] max-w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
                   style={{ filter: 'brightness(0.96) contrast(1.06) saturate(0.85)' }}
                 />
               </div>
@@ -233,7 +233,7 @@ export default function B2BPage() {
                 height={900}
                 quality={95}
                 priority
-                className="w-full max-w-[420px] h-auto drop-shadow-[0_60px_120px_rgba(0,0,0,0.7)]"
+                className="w-full max-w-[540px] h-auto drop-shadow-[0_60px_120px_rgba(0,0,0,0.7)]"
                 style={{ filter: 'brightness(0.96) contrast(1.06) saturate(0.85)' }}
               />
             </div>
@@ -249,7 +249,7 @@ export default function B2BPage() {
               '5–7 Tage Lieferzeit*',
               'Einstieg ab 1 Karton',
               'Muster verfügbar',
-              'Antwort innerhalb 24h',
+              'Antwort innerhalb 24 h (werktags)',
               'Keine Vertragsbindung',
             ].map((t) => (
               <span key={t} className="flex items-center gap-2 text-[11px] text-gray-500 font-medium uppercase tracking-widest">
@@ -369,6 +369,10 @@ export default function B2BPage() {
               </div>
             </div>
           </div>
+
+          <p className="text-center text-sm text-text-light mb-8">
+            55% ab Staffel/Volumen · 45% Marge ab 1 Karton. Mengenstaffel: 2 Krt. −2%, 3 Krt. −3%, … 10 Krt. −10% (1 Karton = 12 Beutel).
+          </p>
 
           {/* Desktop: Beispielrechnung (klar & einfach) */}
           <div className="hidden md:block b2b-card overflow-hidden mb-6">
@@ -500,7 +504,7 @@ export default function B2BPage() {
                 width={600}
                 height={800}
                 quality={95}
-                className="w-full max-w-[340px] h-auto drop-shadow-[0_50px_110px_rgba(0,0,0,0.22)]"
+                className="w-full max-w-[420px] h-auto drop-shadow-[0_50px_110px_rgba(0,0,0,0.22)]"
                 style={{ filter: 'brightness(0.96) contrast(1.06) saturate(0.85)' }}
               />
             </div>
@@ -657,7 +661,7 @@ export default function B2BPage() {
               </a>
             </div>
             <p className="mt-4 text-xs text-text-light">
-              Direkte Ansprechpartner · Telefon &amp; E-Mail: <a href="mailto:b2b@eden-naturals.de" className="text-accent font-semibold hover:underline">b2b@eden-naturals.de</a>
+              Direkte Ansprechpartner Murat Yakut – Telefon 00352 621 178877 &amp; E-Mail: <a href="mailto:b2b@eden-naturals.de" className="text-accent font-semibold hover:underline">b2b@eden-naturals.de</a>
             </p>
           </div>
 
@@ -668,7 +672,7 @@ export default function B2BPage() {
               </div>
               <h3 className="text-xl font-bold text-text mb-2 tracking-tight">Anfrage erhalten</h3>
               <p className="text-text-light text-sm md:text-base leading-relaxed max-w-sm mx-auto">
-                Wir melden uns innerhalb von 1–2 Werktagen mit den Konditionen und nächsten Schritten.
+                Wir melden uns innerhalb von 24 h (werktags) mit den Konditionen und nächsten Schritten.
               </p>
             </div>
           ) : (
@@ -740,7 +744,7 @@ export default function B2BPage() {
                 {submitting ? 'Wird gesendet...' : 'Partner werden'}
               </button>
               <p className="text-xs text-text-light text-center">
-                * Pflichtfelder · Wir melden uns innerhalb von 1–2 Werktagen
+                * Pflichtfelder · Wir melden uns innerhalb von 24 h (werktags)
               </p>
             </form>
           )}
