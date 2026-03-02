@@ -1,19 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    // Only redirect /b2b in production/live, not in local dev
-    if (process.env.NODE_ENV !== 'production') {
-      return []
-    }
-
-    return [
-      {
-        source: '/b2b',
-        destination: 'https://edenpartner.de',
-        permanent: true,
-      },
-    ]
-  },
+  // /b2b → edenpartner.de und edenpartner.de/ → B2B-Inhalt: siehe middleware.ts
   images: {
     remotePatterns: [
       {
