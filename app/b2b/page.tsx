@@ -51,7 +51,7 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Wie viel muss ich mindestens bestellen?',
-    a: 'Einstieg ab 1 Karton (6 × 660 g). Ab 12 Einheiten gibt es einen Mengenrabatt. Ab 1.000 Einheiten erstellen wir ein individuelles Angebot – sprechen Sie uns an.',
+    a: 'Einstieg ab halbem Karton (6 × 660 g). Ganzer Karton: 12 Beutel. Ab 1.000 Einheiten erstellen wir ein individuelles Angebot – sprechen Sie uns an.',
   },
   {
     q: 'Wie schnell kann nachbestellt werden?',
@@ -210,6 +210,14 @@ export default function B2BPage() {
                 </a>
               </div>
 
+              {/* Lieferzeit-Badge */}
+              <div className="mt-4 flex items-center gap-3 text-[11px] text-gray-400">
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-white text-[#111] font-semibold tracking-[0.16em] uppercase">
+                  5–7 Tage
+                </span>
+                <span className="hidden sm:inline">Lieferzeit bei Lagerware*</span>
+              </div>
+
               {/* Mobile product image */}
               <div className="lg:hidden mt-10 flex justify-center pb-4 px-2">
                 <Image
@@ -251,6 +259,7 @@ export default function B2BPage() {
               'Muster verfügbar',
               'Antwort innerhalb 24 h (werktags)',
               'Keine Vertragsbindung',
+              'Ohne Chemie',
             ].map((t) => (
               <span key={t} className="flex items-center gap-2 text-[11px] text-gray-500 font-medium uppercase tracking-widest">
                 <span className="w-1 h-1 rounded-full bg-accent-light/60 flex-shrink-0" aria-hidden />
@@ -371,7 +380,7 @@ export default function B2BPage() {
           </div>
 
           <p className="text-center text-sm text-text-light mb-8">
-            55% ab Staffel/Volumen · 45% Marge ab 1 Karton. Mengenstaffel: 2 Krt. −2%, 3 Krt. −3%, … 10 Krt. −10% (1 Karton = 12 Beutel).
+            55% ab Staffel/Volumen · 45% Marge ab 1 Karton. Mengenstaffel: 2 Krt. −2%, 3 Krt. −3%, … 10 Krt. −10% (1 Karton = 12 Beutel). Ab halbem Karton möglich.
           </p>
 
           {/* Desktop: Beispielrechnung (klar & einfach) */}
@@ -654,14 +663,14 @@ export default function B2BPage() {
                 Jetzt B2B-Partner werden
               </a>
               <a
-                href="mailto:b2b@eden-naturals.de"
+                href="mailto:b2b@eden-partner.com"
                 className="px-7 py-3.5 rounded-xl min-h-[52px] text-sm font-semibold border border-accent/40 text-accent hover:bg-accent/5 transition-colors"
               >
                 Muster anfordern
               </a>
             </div>
             <p className="mt-4 text-xs text-text-light">
-              Direkte Ansprechpartner Murat Yakut – Telefon 00352 621 178877 &amp; E-Mail: <a href="mailto:b2b@eden-naturals.de" className="text-accent font-semibold hover:underline">b2b@eden-naturals.de</a>
+              Direkte Ansprechpartner Murat Yakut – Telefon 00352 621 178877 &amp; E-Mail: <a href="mailto:b2b@eden-partner.com" className="text-accent font-semibold hover:underline">b2b@eden-partner.com</a>
             </p>
           </div>
 
@@ -731,8 +740,8 @@ export default function B2BPage() {
                 >
                   <option value="">Noch nicht sicher</option>
                   <option value="muster">Erst Muster anfordern</option>
-                  <option value="6er">6er Karton (Einstieg)</option>
-                  <option value="12er">12er Karton (Mengenrabatt)</option>
+                  <option value="6er">6 Units (halber Karton)</option>
+                  <option value="12er">12 Units (ganzer Karton)</option>
                   <option value="1000+">1.000+ Einheiten (Großmenge)</option>
                 </select>
               </div>
@@ -767,10 +776,10 @@ export default function B2BPage() {
           <p className="text-center text-text-light text-sm mt-8">
             Weitere Fragen?{' '}
             <a
-              href="mailto:b2b@eden-naturals.de"
+              href="mailto:b2b@eden-partner.com"
               className="text-accent font-semibold hover:underline"
             >
-              b2b@eden-naturals.de
+              b2b@eden-partner.com
             </a>
           </p>
         </div>
@@ -789,10 +798,10 @@ export default function B2BPage() {
           <p className="text-sm mb-1.5">
             Eden Naturals ·{' '}
             <a
-              href="mailto:b2b@eden-naturals.de"
+              href="mailto:b2b@eden-partner.com"
               className="text-accent-light hover:text-white transition-colors font-medium"
             >
-              b2b@eden-naturals.de
+              b2b@eden-partner.com
             </a>
           </p>
           <p className="text-xs text-gray-600 mb-8 max-w-xs mx-auto">

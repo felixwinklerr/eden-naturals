@@ -15,7 +15,6 @@ export function ComparisonSection() {
     { featureKey: 'home.comparison.bloating', standard: 'home.comparison.often', eden: 'home.comparison.rare', highlight: false },
     { featureKey: 'home.comparison.stomach', standard: 'home.comparison.restless', eden: 'home.comparison.calm', highlight: false },
     { featureKey: 'home.comparison.energyStability', standard: 'home.comparison.unstable', eden: 'home.comparison.stable', highlight: false },
-    { featureKey: 'home.comparison.steps', standard: 'home.comparison.stepsStandard', eden: '2–3', highlight: true },
   ]
 
   return (

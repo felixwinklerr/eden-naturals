@@ -12,7 +12,6 @@ export function ProductComparison() {
     { featureKey: 'home.comparison.lecithin', standard: 'home.comparison.often', eden: 'home.comparison.no', highlight: false },
     { featureKey: 'product.aromas', standard: 'home.comparison.yes', eden: 'home.comparison.no', highlight: false },
     { featureKey: 'home.comparison.solubility', standard: 'home.comparison.solubilityStandard', eden: 'home.comparison.solubilityEden', highlight: true },
-    { featureKey: 'home.comparison.steps', standard: 'home.comparison.stepsStandard', eden: '2–3', highlight: false },
   ]
 
   return (

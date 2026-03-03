@@ -37,6 +37,14 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
 
   const pricePerKgFormatted = calculatePricePerKg(price, variantTitle)
 
+  const isTesterVariant = (title: string | undefined): boolean => {
+    if (!title) return false
+    const lower = String(title).toLowerCase()
+    return /150\s*g/.test(lower) || lower.includes('tester')
+  }
+
+  const isTester = isTesterVariant(variantTitle)
+
   const productData: ProductInfo | null = getProductData(product.handle)
   const titleKey = getProductTitleKey(product.handle)
   const displayTitle = t(`productTitles.${titleKey}`) !== `productTitles.${titleKey}` ? t(`productTitles.${titleKey}`) : (productData?.title ?? product.title)
@@ -179,7 +187,7 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
               </div>
 
               {/* Preis + Social Proof Micro-Signal */}
-              <div className="mb-3 md:mb-4">
+              <div className="mb-2.5 md:mb-3.5">
                 <div className="flex items-center gap-3 flex-wrap">
                   <span className="text-2xl md:text-3xl font-bold text-accent">
                     {formatPrice(price, currencyCode)}
@@ -198,6 +206,15 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                   </div>
                 </div>
               </div>
+
+              {/* Tester-Hinweis */}
+              {isTester && (
+                <div className="mb-3 md:mb-4">
+                  <p className="text-[11px] md:text-xs text-amber-900 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 leading-snug">
+                    {t('product.testerGuaranteeShort')}
+                  </p>
+                </div>
+              )}
 
               {/* Trust-Bullets direkt unter Preis */}
               <div className="flex flex-col gap-1 mb-4">
@@ -434,14 +451,26 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                 <div>
                   <h4 className="font-semibold text-text mb-2 md:mb-3 text-sm md:text-base">{t('product.ingredientsLabel')}</h4>
                   {enrichedData.info && enrichedData.info.length > 0 ? (
-                    <ul className="space-y-1.5 md:space-y-2">
-                      {enrichedData.info.map((item, index) => (
-                        <li key={index} className="flex items-start gap-2 text-text-light text-sm">
-                          <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <>
+                      <ul className="space-y-1.5 md:space-y-2">
+                        {enrichedData.info.map((item, index) => (
+                          <li key={index} className="flex items-start gap-2 text-text-light text-sm">
+                            <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      {enrichedData.isVegan && (
+                        <p className="text-[11px] text-text-muted mt-2">
+                          {t('product.milkTraceWarning')}
+                        </p>
+                      )}
+                      {!enrichedData.isVegan && (
+                        <p className="text-[11px] text-text-muted mt-2">
+                          {t('product.wheyStorageHint')}
+                        </p>
+                      )}
+                    </>
                   ) : (
                     <p className="text-text-light text-sm">{t('product.ingredientsLoading')}</p>
                   )}
@@ -581,6 +610,12 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                 {t('product.guaranteeSection')}
               </h3>
               <div className="space-y-3 md:space-y-4 text-sm md:text-base opacity-95 mb-4 md:mb-6">
+                {isTester && (
+                  <div>
+                    <p className="font-semibold text-white mb-0.5 md:mb-1">{t('product.guaranteeTesterLabel')}</p>
+                    <p className="opacity-90 leading-relaxed">{t('product.testerGuaranteeDetail')}</p>
+                  </div>
+                )}
                 <div>
                   <p className="font-semibold text-white mb-0.5 md:mb-1">{t('product.guaranteeTesterLabel')}</p>
                   <p className="opacity-90 leading-relaxed">{t('product.guaranteeTester')}</p>

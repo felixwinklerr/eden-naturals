@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // /b2b → edenpartner.de und edenpartner.de/ → B2B-Inhalt: siehe middleware.ts
+  // /b2b → eden-partner.com und eden-partner.com/ → B2B-Inhalt: siehe middleware.ts
   images: {
     remotePatterns: [
       {
