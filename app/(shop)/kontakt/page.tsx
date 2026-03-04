@@ -16,11 +16,16 @@ export default function KontaktPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Connect to email service or form handler
-    console.log('Form submitted:', formData)
+    const to = t('pages.contact.emailAddress')
+    const subject = encodeURIComponent(formData.subject ? `Kontakt: ${formData.subject}` : `Kontaktanfrage von ${formData.name || formData.email}`)
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nE-Mail: ${formData.email}\nBetreff: ${formData.subject}\n\nNachricht:\n${formData.message}`
+    )
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`
     trackLead()
     setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
+    setFormData({ name: '', email: '', subject: '', message: '' })
+    setTimeout(() => setSubmitted(false), 5000)
   }
 
   return (

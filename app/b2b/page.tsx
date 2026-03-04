@@ -70,13 +70,18 @@ export default function B2BPage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const B2B_EMAIL = 'b2b@eden-partner.com'
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitting(true)
-    setTimeout(() => {
-      setSubmitting(false)
-      setSubmitted(true)
-    }, 800)
+    const subject = encodeURIComponent(`B2B Anfrage: ${formData.company}`)
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nUnternehmen: ${formData.company}\nE-Mail: ${formData.email}\nTelefon: ${formData.phone || '–'}\nMenge: ${formData.quantity || '–'}`
+    )
+    window.location.href = `mailto:${B2B_EMAIL}?subject=${subject}&body=${body}`
+    setSubmitted(true)
+    setSubmitting(false)
   }
 
   return (

@@ -131,12 +131,12 @@ We reserve the right to update, change or replace any part of these Terms and Co
   },
   {
     title: 'SECTION 24 – CONTACT INFORMATION',
-    body: `For questions about the Terms and Conditions please contact info@edennaturals.lu.
+    body: `For questions about the Terms and Conditions please contact info@eden-naturals.lu.
 
 Our contact details are set out below:
 
 eden Sàrl
-info@edennaturals.lu
+info@eden-naturals.lu
 1a Rue Albert 1Er, 1117 Luxembourg, Luxembourg
 +352 621 178 877
 COMPANY REGISTRATION NUMBER: B256948

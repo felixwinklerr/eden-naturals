@@ -133,12 +133,12 @@ Wir behalten uns das Recht vor, Teile dieser Allgemeinen Geschäftsbedingungen n
   },
   {
     title: 'ABSCHNITT 24 – KONTAKTINFORMATIONEN',
-    body: `Bei Fragen zu den Allgemeinen Geschäftsbedingungen wenden Sie sich bitte an info@edennaturals.lu.
+    body: `Bei Fragen zu den Allgemeinen Geschäftsbedingungen wenden Sie sich bitte an info@eden-naturals.lu.
 
 Unsere Kontaktinformationen sind unten aufgeführt:
 
 eden Sàrl
-info@edennaturals.lu
+info@eden-naturals.lu
 1a Rue Albert 1Er, 1117 Luxembourg, Luxemburg
 +352 621 178 877
 HANDELSREGISTERNUMMER: B256948

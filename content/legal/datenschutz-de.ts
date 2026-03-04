@@ -120,7 +120,7 @@ export const datenschutzSections: { title?: string; subtitle?: string; paragraph
   {
     title: 'Kontakt',
     paragraphs: [
-      'Sollten Sie Fragen zu unseren Datenschutzverfahren oder dieser Datenschutzerklärung haben, oder wenn Sie eines der Ihnen zustehenden Rechte ausüben möchten, wenden Sie sich bitte telefonisch unter +352 621 178 877, per E-Mail unter info@edennaturals.lu oder per Post an eden Sàrl, 1a Rue Albert 1Er, L-1117 Luxembourg, Luxemburg an uns. Im Sinne der geltenden Datenschutzgesetze sind wir der Datenverantwortliche für Ihre personenbezogenen Daten.',
+      'Sollten Sie Fragen zu unseren Datenschutzverfahren oder dieser Datenschutzerklärung haben, oder wenn Sie eines der Ihnen zustehenden Rechte ausüben möchten, wenden Sie sich bitte telefonisch unter +352 621 178 877, per E-Mail unter info@eden-naturals.lu oder per Post an eden Sàrl, 1a Rue Albert 1Er, L-1117 Luxembourg, Luxemburg an uns. Im Sinne der geltenden Datenschutzgesetze sind wir der Datenverantwortliche für Ihre personenbezogenen Daten.',
     ],
   },
 ]

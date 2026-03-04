@@ -41,7 +41,7 @@ export default async function CookieRichtliniePage() {
             <p>{t('pages.cookie.p5')}</p>
             <p>
               <strong className="text-text">E-Mail:</strong>{' '}
-              <a href="mailto:info@eden.lu" className="text-accent hover:underline">info@eden.lu</a>
+              <a href="mailto:info@eden-naturals.lu" className="text-accent hover:underline">info@eden-naturals.lu</a>
             </p>
           </section>
         </div>
