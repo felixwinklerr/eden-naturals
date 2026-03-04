@@ -222,13 +222,13 @@ export default function B2BPage() {
         <div className="container-custom">
           <div className="flex flex-wrap justify-center items-center gap-x-7 gap-y-2">
             {[t('b2b.trust1'), t('b2b.trust2'), t('b2b.trust3'), t('b2b.trust4'), t('b2b.trust5'), t('b2b.trust6')].map((label) => (
-              <span key={label} className="flex items-center gap-2 text-[11px] text-gray-500 font-medium uppercase tracking-widest">
-                <span className="w-1 h-1 rounded-full bg-accent-light/60 flex-shrink-0" aria-hidden />
+              <span key={label} className="flex items-center gap-2 text-[11px] text-gray-300 font-medium uppercase tracking-widest">
+                <span className="w-1 h-1 rounded-full bg-accent-light/80 flex-shrink-0" aria-hidden />
                 {label}
               </span>
             ))}
           </div>
-          <p className="text-center text-[10px] text-gray-600 mt-2">
+          <p className="text-center text-[10px] text-gray-400 mt-2">
             {t('b2b.trustFootnote')}
           </p>
         </div>
