@@ -202,7 +202,7 @@ export const de = {
       title: 'Häufige Fragen',
       subtitle: 'Alles was Sie wissen müssen – transparent und ehrlich.',
       q1: 'Warum ist der Preis höher als konventionelles Protein?',
-      a1: 'Unser Preis spiegelt was wir weglassen: Lecithin, Aromen, Süßstoffe, E-Nummern – und was wir hinzufügen: mechanische Veredelung für echte Löslichkeit. Sie zahlen für 2-Zutaten-Qualität aus Kleinserien-Produktion in Luxemburg.',
+      a1: 'Weil wir Zusätze weglassen (Aromen, Süßstoffe, Lecithin, E-Nummern) und stattdessen die Rohware mechanisch veredeln, damit sie schnell und sauber dispergiert. Viele Tester sagen danach: Standard-Shakes wirken plötzlich künstlich oder „schwer“.',
       q2: 'Funktioniert es wirklich ohne Shaker?',
       a2: 'Bei unseren veganen Produkten: ja – einfach einrühren, kein Shaker nötig. Beim Whey löst es sich ebenfalls sehr gut auf; optimal ist ein kurzes Schütteln im Shaker. Unsere mechanische Veredelung sorgt dafür, dass sich das Protein vollständig und klumpenfrei auflöst.',
       q3: 'Was genau ist „mechanische Veredelung"?',
