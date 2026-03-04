@@ -3,65 +3,17 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useLocale } from '@/contexts/LocaleContext'
+import { LOCALES, LOCALE_LABELS } from '@/lib/i18n/types'
 
-/* ─── Data ─── */
-const PRODUCTS = [
-  {
-    name: 'Vegan Blend',
-    desc: 'Erbse & Reis 70/30 · 660 g',
-    b2cPrice: 39.90,
-    ekNetto: 18.76,
-    margin: 45,
-    grossProfit: 15.35,
-    highlight: false,
-  },
-  {
-    name: 'Whey WPC 80',
-    desc: 'Unbehandelt · 660 g',
-    b2cPrice: 48.90,
-    ekNetto: 22.99,
-    margin: 45,
-    grossProfit: 18.81,
-    highlight: true,
-  },
-  {
-    name: 'Reisprotein',
-    desc: 'Vegan · Hypoallergen · 660 g',
-    b2cPrice: 35.90,
-    ekNetto: 16.41,
-    margin: 45,
-    grossProfit: 13.42,
-    highlight: false,
-  },
-  {
-    name: 'Erbsenprotein',
-    desc: 'Rein pflanzlich · 660 g',
-    b2cPrice: 35.90,
-    ekNetto: 16.41,
-    margin: 45,
-    grossProfit: 13.42,
-    highlight: false,
-  },
+/* ─── Product data (numbers only; names/descs from i18n) ─── */
+const PRODUCT_DATA = [
+  { nameKey: 'productVeganBlend', descKey: 'productVeganBlendDesc', b2cPrice: 39.90, ekNetto: 18.76, margin: 45, grossProfit: 15.35, highlight: false },
+  { nameKey: 'productWhey', descKey: 'productWheyDesc', b2cPrice: 48.90, ekNetto: 22.99, margin: 45, grossProfit: 18.81, highlight: true },
+  { nameKey: 'productRice', descKey: 'productRiceDesc', b2cPrice: 35.90, ekNetto: 16.41, margin: 45, grossProfit: 13.42, highlight: false },
+  { nameKey: 'productPea', descKey: 'productPeaDesc', b2cPrice: 35.90, ekNetto: 16.41, margin: 45, grossProfit: 13.42, highlight: false },
 ]
-
-const FAQ_ITEMS = [
-  {
-    q: 'Wie hoch ist die Handelsspanne?',
-    a: '45 % Standard ab 1 Karton bis 10 Karton. Bis 55 % bei Staffel, Volumen oder White-Label. Beim Whey WPC 80 (48,90 € UVP) z. B. 18,81 € Rohertrag pro 660 g bei 45 % – ab dem ersten Karton.',
-  },
-  {
-    q: 'Wie viel muss ich mindestens bestellen?',
-    a: 'Einstieg ab halbem Karton (6 × 660 g). Ganzer Karton: 12 Beutel. Ab 1.000 Einheiten erstellen wir ein individuelles Angebot – sprechen Sie uns an.',
-  },
-  {
-    q: 'Wie schnell kann nachbestellt werden?',
-    a: 'Nachbestellung i.d.R. innerhalb von 5–7 Werktagen (bei Lagerware, je nach Region, ab Bestätigung). Wir arbeiten mit stabiler Produktionskapazität – keine Engpässe, keine langen Vorlaufzeiten.',
-  },
-  {
-    q: 'Ist White Labeling möglich?',
-    a: 'Ja, selektiv. White Label ist für Partner mit klarer Marke und Positionierung verfügbar. Anfragen bitte mit Kurzbeschreibung des Konzepts.',
-  },
-]
+const FAQ_KEYS = ['faq1', 'faq2', 'faq3', 'faq4'] as const
 
 /* ─── FAQ accordion ─── */
 function FAQItem({ q, a }: { q: string; a: string }) {
@@ -92,6 +44,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 /* ─── Page ─── */
 export default function B2BPage() {
+  const { locale, setLocale, t } = useLocale()
   const [showStickyBar, setShowStickyBar] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -102,6 +55,13 @@ export default function B2BPage() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+
+  const products = PRODUCT_DATA.map((p) => ({
+    ...p,
+    name: t(`b2b.${p.nameKey}`),
+    desc: t(`b2b.${p.descKey}`),
+  }))
+  const faqItems = FAQ_KEYS.map((key) => ({ q: t(`b2b.${key}q`), a: t(`b2b.${key}a`) }))
 
   /* Show sticky mobile CTA after scrolling past the hero */
   useEffect(() => {
@@ -123,7 +83,6 @@ export default function B2BPage() {
     <div className="b2b bg-white min-h-screen">
 
       {/* ─── STICKY MOBILE CTA BAR ─── */}
-      {/* Shows on mobile only after scrolling past hero */}
       <div
         className={`md:hidden fixed bottom-0 left-0 right-0 z-50 px-4 pb-safe-area transition-all duration-300 ${
           showStickyBar ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
@@ -134,7 +93,7 @@ export default function B2BPage() {
             href="#partner"
             className="btn-primary w-full text-base py-4 rounded-xl min-h-[52px] text-center block"
           >
-            Partner werden
+            {t('b2b.ctaPartner')}
           </a>
         </div>
       </div>
@@ -151,15 +110,29 @@ export default function B2BPage() {
               className="h-8 w-auto"
             />
             <span className="hidden sm:block text-[11px] font-semibold text-text-light border-l border-gray-200 pl-3 uppercase tracking-[0.18em]">
-              Partnerbereich
+              {t('b2b.partnerArea')}
             </span>
           </Link>
-          <a
-            href="#partner"
-            className="btn-primary text-sm px-5 py-2.5 rounded-xl min-h-[40px]"
-          >
-            Partner werden
-          </a>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 text-xs font-medium text-text-light" aria-label={t('common.language')}>
+              {LOCALES.map((loc) => (
+                <button
+                  key={loc}
+                  type="button"
+                  onClick={() => setLocale(loc)}
+                  className={`px-2 py-1.5 rounded hover:text-accent transition-colors ${locale === loc ? 'font-semibold text-accent' : ''}`}
+                >
+                  {LOCALE_LABELS[loc]}
+                </button>
+              ))}
+            </div>
+            <a
+              href="#partner"
+              className="btn-primary text-sm px-5 py-2.5 rounded-xl min-h-[40px]"
+            >
+              {t('b2b.ctaPartner')}
+            </a>
+          </div>
         </div>
       </header>
 
@@ -168,30 +141,28 @@ export default function B2BPage() {
         <div className="container-custom max-w-6xl py-20 md:py-28 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
 
-            {/* Left */}
             <div className="flex flex-col">
               <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.22em] mb-6">
-                Für Studios · Händler · Apotheken · Marken
+                {t('b2b.heroFor')}
               </p>
               <h1 className="text-[2.6rem] sm:text-5xl md:text-[3.6rem] lg:text-[3.8rem] font-bold leading-[1.05] tracking-tight mb-5 text-balance">
-                Ihre Proteinmarke.<br />
-                <span className="text-accent-light">Neu gedacht.</span>
+                {t('b2b.heroTitle')}<br />
+                <span className="text-accent-light">{t('b2b.heroTitleNew')}</span>
               </h1>
               <p className="text-gray-200 text-lg leading-relaxed mb-1 max-w-md">
-                Premium-Positionierung statt Preiskampf.
+                {t('b2b.heroSub1')}
               </p>
               <p className="text-gray-400 text-sm mb-6 max-w-md">
-                45 % Standard ab 1 Karton · bis 55 % bei Staffel/Volumen/White-Label. Clean Label · White Label möglich.
+                {t('b2b.heroSub2')}
               </p>
 
-              {/* Key figure: 45 % Marge */}
               <div className="hidden md:flex items-end gap-4 mb-10">
                 <span className="text-accent-light font-black text-6xl lg:text-7xl leading-none tabular-nums">
                   45%
                 </span>
                 <div className="flex flex-col gap-1 text-[11px] tracking-[0.18em] uppercase text-gray-400">
-                  <span>Standard ab 1 Karton (bis 10 Karton)</span>
-                  <span>bis 55 % bei Staffel / White-Label</span>
+                  <span>{t('b2b.key45Caption1')}</span>
+                  <span>{t('b2b.key45Caption2')}</span>
                 </div>
               </div>
 
@@ -200,29 +171,27 @@ export default function B2BPage() {
                   href="#partner"
                   className="btn-primary text-base px-8 py-3.5 rounded-xl min-h-[50px] inline-flex items-center justify-center font-semibold w-full sm:w-auto"
                 >
-                  Partner werden
+                  {t('b2b.ctaPartner')}
                 </a>
                 <a
                   href="#partner"
                   className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl min-h-[50px] w-full sm:w-auto border border-white/20 text-sm font-medium text-gray-300 hover:border-white/40 hover:text-white transition-colors"
                 >
-                  Muster anfordern
+                  {t('b2b.ctaSample')}
                 </a>
               </div>
 
-              {/* Lieferzeit-Badge */}
               <div className="mt-4 flex items-center gap-3 text-[11px] text-gray-400">
                 <span className="inline-flex items-center px-3 py-1 rounded-full bg-white text-[#111] font-semibold tracking-[0.16em] uppercase">
-                  5–7 Tage
+                  {t('b2b.deliveryBadge')}
                 </span>
-                <span className="hidden sm:inline">Lieferzeit bei Lagerware*</span>
+                <span className="hidden sm:inline">{t('b2b.deliveryNote')}</span>
               </div>
 
-              {/* Mobile product image */}
               <div className="lg:hidden mt-10 flex justify-center pb-4 px-2">
                 <Image
                   src="/Your Logo Here.png"
-                  alt="Ihr Logo hier – Standbodenbeutel"
+                  alt={t('b2b.altLogoBag')}
                   width={700}
                   height={900}
                   quality={95}
@@ -232,11 +201,10 @@ export default function B2BPage() {
               </div>
             </div>
 
-            {/* Right: product bag, no frame, no background */}
             <div className="hidden lg:flex items-center justify-center py-10 px-4">
               <Image
                 src="/Your Logo Here.png"
-                alt="Ihr Logo hier – Standbodenbeutel"
+                alt={t('b2b.altLogoBag')}
                 width={700}
                 height={900}
                 quality={95}
@@ -253,22 +221,15 @@ export default function B2BPage() {
       <div className="bg-[#141414] border-t border-white/5 py-3.5">
         <div className="container-custom">
           <div className="flex flex-wrap justify-center items-center gap-x-7 gap-y-2">
-            {[
-              '5–7 Tage Lieferzeit*',
-              'Einstieg ab 1 Karton',
-              'Muster verfügbar',
-              'Antwort innerhalb 24 h (werktags)',
-              'Keine Vertragsbindung',
-              'Ohne Chemie',
-            ].map((t) => (
-              <span key={t} className="flex items-center gap-2 text-[11px] text-gray-500 font-medium uppercase tracking-widest">
+            {[t('b2b.trust1'), t('b2b.trust2'), t('b2b.trust3'), t('b2b.trust4'), t('b2b.trust5'), t('b2b.trust6')].map((label) => (
+              <span key={label} className="flex items-center gap-2 text-[11px] text-gray-500 font-medium uppercase tracking-widest">
                 <span className="w-1 h-1 rounded-full bg-accent-light/60 flex-shrink-0" aria-hidden />
-                {t}
+                {label}
               </span>
             ))}
           </div>
           <p className="text-center text-[10px] text-gray-600 mt-2">
-            * Lieferzeit bei Lagerware, je nach Region, ab Bestätigung.
+            {t('b2b.trustFootnote')}
           </p>
         </div>
       </div>
@@ -279,22 +240,17 @@ export default function B2BPage() {
           <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-start">
             <div>
               <p className="text-[11px] font-semibold text-red-500 uppercase tracking-[0.22em] mb-4">
-                Problem im Markt
+                {t('b2b.problemLabel')}
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight mb-4">
-                Preiskampf statt Positionierung.
+                {t('b2b.problemTitle')}
               </h2>
               <p className="text-text-light text-base">
-                Vergleichbare Produkte führen zu Preiskampf, Rabattaktionen und geringer Differenzierung.
+                {t('b2b.problemDesc')}
               </p>
             </div>
             <div className="space-y-1.5">
-              {[
-                'Preiskampf im Proteinmarkt',
-                'Austauschbare Produkte',
-                'Abhängigkeit von Geschmacksmarketing',
-                'Geringe Differenzierung',
-              ].map((label) => (
+              {[t('b2b.problem1'), t('b2b.problem2'), t('b2b.problem3'), t('b2b.problem4')].map((label) => (
                 <div key={label} className="flex items-center gap-3 px-4 py-3 bg-red-50 rounded-xl">
                   <span className="text-red-400 font-bold flex-shrink-0" aria-hidden>✕</span>
                   <span className="text-text text-sm font-medium">{label}</span>
@@ -311,21 +267,13 @@ export default function B2BPage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-start">
             <div>
               <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-5">
-                Die Lösung
+                {t('b2b.solutionLabel')}
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight mb-6">
-                Neue Kategorie im Proteinmarkt.
+                {t('b2b.solutionTitle')}
               </h2>
               <ul className="space-y-3">
-                {[
-                  'Ohne Lecithin',
-                  'Ohne Emulgatoren',
-                  'Ohne E-Nummern',
-                  'Physikalisch optimierte Struktur',
-                  'Sehr gute Löslichkeit',
-                  'Schnell im Glas dispergiert (Löffel reicht)',
-                  'Premium-Positionierung',
-                ].map((item) => (
+                {[t('b2b.solution1'), t('b2b.solution2'), t('b2b.solution3'), t('b2b.solution4'), t('b2b.solution5'), t('b2b.solution6'), t('b2b.solution7')].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-accent flex items-center justify-center flex-shrink-0 mt-0.5" aria-hidden>
                       <span className="text-white text-[10px] font-bold">✓</span>
@@ -337,12 +285,12 @@ export default function B2BPage() {
             </div>
             <div className="space-y-3">
               <div className="b2b-card p-5">
-                <p className="text-text-light text-xs uppercase tracking-widest mb-3">Andere</p>
-                <p className="text-text-light text-sm">Vergleichbar. Preiskampf.</p>
+                <p className="text-text-light text-xs uppercase tracking-widest mb-3">{t('b2b.otherLabel')}</p>
+                <p className="text-text-light text-sm">{t('b2b.otherDesc')}</p>
               </div>
               <div className="b2b-card p-5 border-accent/30 bg-accent/5">
-                <p className="text-accent text-xs font-semibold uppercase tracking-widest mb-3">Eden</p>
-                <p className="text-text text-sm font-medium">Unvergleichbar. Differenzierung.</p>
+                <p className="text-accent text-xs font-semibold uppercase tracking-widest mb-3">{t('b2b.edenLabel')}</p>
+                <p className="text-text text-sm font-medium">{t('b2b.edenDesc')}</p>
               </div>
             </div>
           </div>
@@ -352,43 +300,41 @@ export default function B2BPage() {
       {/* ─── 4. IHRE MARGE ─── */}
       <section id="konditionen" className="section-padding-lg bg-white">
         <div className="container-custom max-w-5xl">
-          {/* Margen-Highlight: sofort sichtbar */}
           <div className="mb-12 rounded-2xl border-2 border-accent/40 bg-accent/10 p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-text tracking-tight mb-1">
-                Attraktive Handelsspanne
+                {t('b2b.marginTitle')}
               </h2>
               <p className="text-text-light text-sm">
-                45&nbsp;% Standard ab 1 Karton bis 10 Karton. Bis 55&nbsp;% bei Staffel, Volumen oder White-Label. Premium-Preisniveau durchsetzbar · kein Discount-Produkt.
+                {t('b2b.marginDesc')}
               </p>
               <ul className="mt-3 space-y-1.5 text-xs text-text-light">
-                <li>• Hohe Wiederkaufrate durch echte Produktzufriedenheit</li>
+                <li>• {t('b2b.marginBullet')}</li>
               </ul>
             </div>
             <div className="flex items-center gap-8 md:gap-12">
               <div className="text-center">
                 <p className="text-accent font-black text-5xl md:text-6xl tabular-nums">45%</p>
-                <p className="text-text-light text-xs uppercase tracking-widest">Marge</p>
+                <p className="text-text-light text-xs uppercase tracking-widest">{t('b2b.marginLabel')}</p>
               </div>
               <div className="h-12 w-px bg-gray-200 hidden sm:block" aria-hidden />
               <div className="text-center">
                 <p className="text-accent font-bold text-2xl md:text-3xl tabular-nums">18,81 €</p>
-                <p className="text-text-light text-xs uppercase tracking-widest">Rohertrag pro 660 g</p>
-                <p className="text-text-muted text-[10px] mt-0.5">(bei Verkauf zu UVP incl. MwSt)</p>
+                <p className="text-text-light text-xs uppercase tracking-widest">{t('b2b.rohertragLabel')}</p>
+                <p className="text-text-muted text-[10px] mt-0.5">{t('b2b.rohertragNote')}</p>
               </div>
             </div>
           </div>
 
           <p className="text-center text-sm text-text-light mb-8">
-            55% ab Staffel/Volumen · 45% Marge ab 1 Karton. Mengenstaffel: 2 Krt. −2%, 3 Krt. −3%, … 10 Krt. −10% (1 Karton = 12 Beutel). Ab halbem Karton möglich.
+            {t('b2b.volumeLine')}
           </p>
 
-          {/* Desktop: Beispielrechnung (klar & einfach) */}
           <div className="hidden md:block b2b-card overflow-hidden mb-6">
             <table className="w-full">
               <thead>
                 <tr className="bg-gray-50 border-b border-gray-100">
-                  {['Produkt', 'Ihr EK netto', 'Rohertrag / Stk.', 'Marge', 'UVP (B2C, incl. MwSt)'].map((h, i) => (
+                  {[t('b2b.tableProduct'), t('b2b.tableEk'), t('b2b.tableRohertrag'), t('b2b.tableMarge'), t('b2b.tableUvp')].map((h, i) => (
                     <th
                       key={h}
                       className={`py-4 px-5 text-xs font-semibold text-text-light uppercase tracking-wider ${i === 0 ? 'text-left' : 'text-right'}`}
@@ -399,7 +345,7 @@ export default function B2BPage() {
                 </tr>
               </thead>
               <tbody>
-                {PRODUCTS.map((p, i) => (
+                {products.map((p, i) => (
                   <tr
                     key={p.name}
                     className={`border-b border-gray-100 last:border-0 ${
@@ -414,7 +360,7 @@ export default function B2BPage() {
                         </div>
                         {p.highlight && (
                           <span className="text-[10px] font-bold bg-accent text-white px-2 py-0.5 rounded-full uppercase tracking-wide flex-shrink-0">
-                            Top
+                            {t('b2b.topBadge')}
                           </span>
                         )}
                       </div>
@@ -437,13 +383,12 @@ export default function B2BPage() {
             </table>
           </div>
 
-          {/* Mobile: cards */}
           <div className="md:hidden space-y-3">
-            {PRODUCTS.map((p) => (
+            {products.map((p) => (
               <div key={p.name} className="b2b-card overflow-hidden">
                 {p.highlight && (
                   <div className="bg-accent text-white text-[10px] font-bold text-center py-2.5 tracking-widest uppercase">
-                    Höchste Marge
+                    {t('b2b.highestMargin')}
                   </div>
                 )}
                 <div className="p-5">
@@ -458,15 +403,15 @@ export default function B2BPage() {
                   </div>
                   <div className="space-y-1.5 text-sm">
                     <div className="flex justify-between py-1.5">
-                      <span className="text-text-light">Ihr EK netto</span>
+                      <span className="text-text-light">{t('b2b.tableEk')}</span>
                       <span className="text-accent font-bold tabular-nums">{p.ekNetto.toFixed(2).replace('.', ',')} €</span>
                     </div>
                     <div className="flex justify-between py-2 border-t border-gray-100 pt-2">
-                      <span className="font-semibold text-text">Rohertrag / Stk.</span>
+                      <span className="font-semibold text-text">{t('b2b.tableRohertrag')}</span>
                       <span className="font-bold text-text tabular-nums">{p.grossProfit.toFixed(2).replace('.', ',')} €</span>
                     </div>
                     <div className="flex justify-between py-1.5">
-                      <span className="text-text-muted text-xs">UVP (B2C, incl. MwSt) – Beispiel</span>
+                      <span className="text-text-muted text-xs">{t('b2b.uvpExample')}</span>
                       <span className="text-text-muted text-sm tabular-nums">{p.b2cPrice.toFixed(2).replace('.', ',')} €</span>
                     </div>
                   </div>
@@ -482,23 +427,16 @@ export default function B2BPage() {
         <div className="container-custom max-w-6xl">
           <div className="mb-12 md:mb-16">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-4">
-              White Label & Private Label
+              {t('b2b.whiteLabelSection')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight">
-              Ihre Marke. Unsere Technologie.
+              {t('b2b.whiteLabelTitle')}
             </h2>
           </div>
           <div className="grid md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] gap-10 md:gap-16 items-center">
             <div className="b2b-card p-6 md:p-8">
               <ul className="space-y-3">
-                {[
-                  'White Label möglich',
-                  'Private Label möglich',
-                  'Ihr Logo · Ihr Design',
-                  'Individuelles Verpackungskonzept',
-                  'Flexible Abnahmemengen',
-                  'Schnelle Markteinführung',
-                ].map((item) => (
+                {[t('b2b.wl1'), t('b2b.wl2'), t('b2b.wl3'), t('b2b.wl4'), t('b2b.wl5'), t('b2b.wl6')].map((item) => (
                   <li key={item} className="flex items-start gap-2.5 text-sm md:text-base text-text-light">
                     <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
                     {item}
@@ -509,7 +447,7 @@ export default function B2BPage() {
             <div className="flex items-center justify-center py-6 px-4">
               <Image
                 src="/Your Logo Here.png"
-                alt="Your Brand Here – Standbodenbeutel"
+                alt={t('b2b.altLogoBagEn')}
                 width={600}
                 height={800}
                 quality={95}
@@ -526,21 +464,15 @@ export default function B2BPage() {
         <div className="container-custom max-w-5xl">
           <div className="mb-8 md:mb-10">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-4">
-              Produktion & Logistik
+              {t('b2b.productionSection')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight">
-              Zuverlässig & skalierbar.
+              {t('b2b.productionTitle')}
             </h2>
           </div>
           <div className="b2b-card p-6 md:p-8">
             <ul className="space-y-3">
-              {[
-                'Produktion in Europa',
-                'Schnelle Lieferfähigkeit',
-                'Direkte Belieferung oder Zentrallager',
-                'Flexible Mengen je nach Bedarf',
-                'Muster verfügbar',
-              ].map((item) => (
+              {[t('b2b.prod1'), t('b2b.prod2'), t('b2b.prod3'), t('b2b.prod4'), t('b2b.prod5')].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm md:text-base text-text-light">
                   <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
                   {item}
@@ -556,22 +488,14 @@ export default function B2BPage() {
         <div className="container-custom max-w-5xl">
           <div className="mb-8 md:mb-10">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-4">
-              Zielgruppen
+              {t('b2b.forWhoSection')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight">
-              Für wen geeignet?
+              {t('b2b.forWhoTitle')}
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
-            {[
-              'Fitnessstudios',
-              'Online-Shops',
-              'Apotheken',
-              'Reformhäuser',
-              'Coaches',
-              'Eigene Marken',
-              'Vereine',
-            ].map((item) => (
+            {[t('b2b.who1'), t('b2b.who2'), t('b2b.who3'), t('b2b.who4'), t('b2b.who5'), t('b2b.who6'), t('b2b.who7')].map((item) => (
               <div key={item} className="b2b-card py-3.5 px-4 text-sm font-medium text-text">
                 {item}
               </div>
@@ -585,20 +509,15 @@ export default function B2BPage() {
         <div className="container-custom max-w-5xl">
           <div className="mb-8 md:mb-10">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-4">
-              Upgrade bestehender Marken
+              {t('b2b.upgradeSection')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-text leading-tight tracking-tight">
-              Bestehende Produkte veredeln.
+              {t('b2b.upgradeTitle')}
             </h2>
           </div>
           <div className="b2b-card p-6 md:p-8">
             <ul className="space-y-3">
-              {[
-                'Clean / Green Label Struktur',
-                'Upgrade auf High-Class-Niveau',
-                'Entkopplung vom Massenmarkt',
-                'Keine Abhängigkeit von Geschmacksmarketing',
-              ].map((item) => (
+              {[t('b2b.up1'), t('b2b.up2'), t('b2b.up3'), t('b2b.up4')].map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm md:text-base text-text-light">
                   <span className="text-accent mt-0.5 flex-shrink-0">✓</span>
                   {item}
@@ -609,16 +528,15 @@ export default function B2BPage() {
         </div>
       </section>
 
-      {/* ─── 6. PHYSISCHER BEWEIS – Dispergierungsbild direkt unter Headline ─── */}
+      {/* ─── PHYSISCHER BEWEIS ─── */}
       <section className="section-padding-lg b2b-hero-bg text-white">
         <div className="container-custom max-w-4xl">
           <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-[0.22em] mb-4">
-            Nicht wie Standard-Protein
+            {t('b2b.proofSection')}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-8">
-            Struktur statt Zusatzstoffe.
+            {t('b2b.proofTitle')}
           </h2>
-          {/* Dispergierungsbild (Glas mit Wasser) direkt darunter */}
           <div className="aspect-video rounded-2xl overflow-hidden bg-gray-800 shadow-2xl ring-2 ring-white/10 mb-8">
             <video
               src="/mixing-demo.mp4"
@@ -635,42 +553,41 @@ export default function B2BPage() {
           </div>
           <div className="text-center">
             <a href="#partner" className="btn-primary inline-flex items-center justify-center px-8 py-4 rounded-2xl min-h-[52px]">
-              Partner werden
+              {t('b2b.ctaPartner')}
             </a>
           </div>
         </div>
       </section>
 
-      {/* ─── 9. STARKER CALL TO ACTION + FORMULAR ─── */}
+      {/* ─── 9. CTA + FORMULAR ─── */}
       <section id="partner" className="section-padding-lg bg-white">
         <div className="container-custom max-w-3xl">
           <div className="text-center mb-10">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-[0.22em] mb-5">
-              Jetzt B2B-Partner werden
+              {t('b2b.ctaSection')}
             </p>
             <h2 className="text-2xl md:text-3xl font-bold text-text mb-3 tracking-tight">
-              Muster anfordern & B2B-Gespräch vereinbaren.
+              {t('b2b.ctaTitle')}
             </h2>
             <p className="text-text-light text-sm md:text-base max-w-md mx-auto">
-              Sagen Sie uns kurz, welche Zielgruppe Sie bedienen und welche Region.
-              Sie erhalten Konditionen, Mindestmengen, Musteroptionen und einen Terminvorschlag für ein B2B-Gespräch.
+              {t('b2b.ctaSub')}
             </p>
             <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
               <a
                 href="#partner"
                 className="btn-primary px-7 py-3.5 rounded-xl min-h-[52px] text-base font-semibold"
               >
-                Jetzt B2B-Partner werden
+                {t('b2b.ctaPartner')}
               </a>
               <a
                 href="mailto:b2b@eden-partner.com"
                 className="px-7 py-3.5 rounded-xl min-h-[52px] text-sm font-semibold border border-accent/40 text-accent hover:bg-accent/5 transition-colors"
               >
-                Muster anfordern
+                {t('b2b.ctaSample')}
               </a>
             </div>
             <p className="mt-4 text-xs text-text-light">
-              Direkte Ansprechpartner Murat Yakut – Telefon 00352 621 178877 &amp; E-Mail: <a href="mailto:b2b@eden-partner.com" className="text-accent font-semibold hover:underline">b2b@eden-partner.com</a>
+              {t('b2b.contactLine')} <a href="mailto:b2b@eden-partner.com" className="text-accent font-semibold hover:underline">b2b@eden-partner.com</a>
             </p>
           </div>
 
@@ -679,29 +596,29 @@ export default function B2BPage() {
               <div className="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-2xl font-bold mx-auto mb-6">
                 ✓
               </div>
-              <h3 className="text-xl font-bold text-text mb-2 tracking-tight">Anfrage erhalten</h3>
+              <h3 className="text-xl font-bold text-text mb-2 tracking-tight">{t('b2b.formSuccessTitle')}</h3>
               <p className="text-text-light text-sm md:text-base leading-relaxed max-w-sm mx-auto">
-                Wir melden uns innerhalb von 24 h (werktags) mit den Konditionen und nächsten Schritten.
+                {t('b2b.formSuccessText')}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="b2b-card p-6 md:p-8 space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="name" className="b2b-label">Name *</label>
+                  <label htmlFor="name" className="b2b-label">{t('b2b.labelName')}</label>
                   <input
                     type="text" id="name" required
-                    placeholder="Vor- und Nachname"
+                    placeholder={t('b2b.placeholderName')}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="b2b-input"
                   />
                 </div>
                 <div>
-                  <label htmlFor="company" className="b2b-label">Unternehmen *</label>
+                  <label htmlFor="company" className="b2b-label">{t('b2b.labelCompany')}</label>
                   <input
                     type="text" id="company" required
-                    placeholder="Name Ihres Unternehmens"
+                    placeholder={t('b2b.placeholderCompany')}
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     className="b2b-input"
@@ -710,20 +627,20 @@ export default function B2BPage() {
               </div>
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="email" className="b2b-label">E-Mail *</label>
+                  <label htmlFor="email" className="b2b-label">{t('b2b.labelEmail')}</label>
                   <input
                     type="email" id="email" required
-                    placeholder="ihre@email.de"
+                    placeholder={t('b2b.placeholderEmail')}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="b2b-input"
                   />
                 </div>
                 <div>
-                  <label htmlFor="phone" className="b2b-label">Telefon</label>
+                  <label htmlFor="phone" className="b2b-label">{t('b2b.labelPhone')}</label>
                   <input
                     type="tel" id="phone"
-                    placeholder="+49 ..."
+                    placeholder={t('b2b.placeholderPhone')}
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="b2b-input"
@@ -731,18 +648,18 @@ export default function B2BPage() {
                 </div>
               </div>
               <div>
-                <label htmlFor="quantity" className="b2b-label">Menge</label>
+                <label htmlFor="quantity" className="b2b-label">{t('b2b.labelQuantity')}</label>
                 <select
                   id="quantity"
                   value={formData.quantity}
                   onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
                   className="b2b-input"
                 >
-                  <option value="">Noch nicht sicher</option>
-                  <option value="muster">Erst Muster anfordern</option>
-                  <option value="6er">6 Units (halber Karton)</option>
-                  <option value="12er">12 Units (ganzer Karton)</option>
-                  <option value="1000+">1.000+ Einheiten (Großmenge)</option>
+                  <option value="">{t('b2b.quantityNotSure')}</option>
+                  <option value="muster">{t('b2b.quantitySample')}</option>
+                  <option value="6er">{t('b2b.quantity6')}</option>
+                  <option value="12er">{t('b2b.quantity12')}</option>
+                  <option value="1000+">{t('b2b.quantity1000')}</option>
                 </select>
               </div>
               <button
@@ -750,10 +667,10 @@ export default function B2BPage() {
                 disabled={submitting}
                 className="btn-primary w-full text-base py-4 rounded-xl min-h-[52px] disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {submitting ? 'Wird gesendet...' : 'Partner werden'}
+                {submitting ? t('b2b.submitSending') : t('b2b.ctaPartner')}
               </button>
               <p className="text-xs text-text-light text-center">
-                * Pflichtfelder · Wir melden uns innerhalb von 24 h (werktags)
+                {t('b2b.requiredNote')}
               </p>
             </form>
           )}
@@ -765,16 +682,16 @@ export default function B2BPage() {
         <div className="container-custom max-w-2xl">
           <div className="text-center mb-10">
             <h2 className="text-xl md:text-2xl font-bold text-text tracking-tight">
-              Häufige Fragen
+              {t('b2b.faqTitle')}
             </h2>
           </div>
           <div className="b2b-card overflow-hidden divide-y divide-gray-100 px-5 md:px-8">
-            {FAQ_ITEMS.map((item) => (
+            {faqItems.map((item) => (
               <FAQItem key={item.q} q={item.q} a={item.a} />
             ))}
           </div>
           <p className="text-center text-text-light text-sm mt-8">
-            Weitere Fragen?{' '}
+            {t('b2b.faqContact')}{' '}
             <a
               href="mailto:b2b@eden-partner.com"
               className="text-accent font-semibold hover:underline"
@@ -805,7 +722,7 @@ export default function B2BPage() {
             </a>
           </p>
           <p className="text-xs text-gray-600 mb-8 max-w-xs mx-auto">
-            Diese Seite richtet sich ausschließlich an gewerbliche Partner und Händler.
+            {t('b2b.footerTagline')}
           </p>
           <div className="flex justify-center gap-8 text-xs text-gray-600">
             <Link href="/impressum" className="hover:text-gray-300 transition-colors">Impressum</Link>
