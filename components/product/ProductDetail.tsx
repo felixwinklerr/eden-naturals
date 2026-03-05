@@ -44,6 +44,9 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
   }
 
   const isTester = isTesterVariant(variantTitle)
+  const hasTesterVariant = product.variants?.edges?.some(
+    (variant: any) => isTesterVariant(variant.node?.title)
+  )
 
   const productData: ProductInfo | null = getProductData(product.handle)
   const titleKey = getProductTitleKey(product.handle)
@@ -208,6 +211,13 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
               </div>
 
               {/* Tester-Hinweis */}
+              {hasTesterVariant && !isTester && (
+                <div className="mb-2">
+                  <p className="text-[11px] md:text-xs text-text-muted leading-snug">
+                    {t('product.testerAvailableHint')}
+                  </p>
+                </div>
+              )}
               {isTester && (
                 <div className="mb-3 md:mb-4">
                   <p className="text-[11px] md:text-xs text-amber-900 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 leading-snug">

@@ -31,7 +31,8 @@ export default async function ProductsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             {products?.edges?.map(({ node: product }: any) => {
               const image = product.images?.edges?.[0]?.node
-              const price = product.priceRange?.minVariantPrice
+              const price =
+                product.priceRange?.maxVariantPrice || product.priceRange?.minVariantPrice
               const titleKey = getProductTitleKey(product.handle ?? '')
               const displayTitle = t(`productTitles.${titleKey}`) !== `productTitles.${titleKey}` ? t(`productTitles.${titleKey}`) : product.title
 
