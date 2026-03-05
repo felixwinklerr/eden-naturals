@@ -60,6 +60,10 @@ export const ALL_PRODUCTS = gql`
               amount
               currencyCode
             }
+            maxVariantPrice {
+              amount
+              currencyCode
+            }
           }
           images(first: 1) {
             edges {
