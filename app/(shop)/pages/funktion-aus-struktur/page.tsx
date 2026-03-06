@@ -27,12 +27,6 @@ export default function FunktionAusStrukturPage() {
                 >
                   Protein entdecken
                 </Link>
-                <Link
-                  href="/b2b"
-                  className="btn-secondary w-full sm:w-auto text-base md:text-lg px-8 py-3.5 md:py-4"
-                >
-                  B2B Partner werden
-                </Link>
               </div>
 
               <p className="text-xs md:text-sm text-text-muted">
