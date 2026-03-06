@@ -16,6 +16,7 @@ export function Navigation() {
   const navItems = [
     { label: t('nav.shop'), href: '/products' },
     { label: t('nav.whyEden'), href: '/warum-eden' },
+    { label: 'Funktion aus Struktur', href: '/funktion-aus-struktur' },
     { label: t('nav.faq'), href: '/#faq' },
     { label: t('nav.contact'), href: '/kontakt' },
   ]

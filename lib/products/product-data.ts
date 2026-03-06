@@ -182,22 +182,22 @@ Wir verkaufen funktionierendes Pflanzliches Protein.`,
     title: 'WPC 80',
     handle: 'wpc-80',
     tagline: 'Whey Protein neu gedacht.',
-    description: `Optimale Löslichkeit: klumpenfrei durch leichte Scherkraft (kurzes Schütteln im Shaker).
+    description: `Funktion aus Struktur – nicht aus Zusatz- oder Füllstoffen.
 
 Unser WPC 80 bleibt roh, unverändert und frei von Lecithin oder Instantisierung – für ein sauberes Mundgefühl und maximale Wirkung.
 
 Kein Gel, kein Schleim, kein Maskieren. Nur ehrliche Funktionalität.`,
     keyPoints: [
-      'Optimale Löslichkeit: klumpenfrei durch leichte Scherkraft (kurzes Schütteln im Shaker)',
+      'Funktion aus Struktur – nicht aus Zusatz- oder Füllstoffen',
       'Kein Klumpen, kein Film, kein schweres Mundgefühl',
       'Angenehm neutral im Geschmack'
     ],
     whatMakesItSpecial: {
       title: 'Was es besonders macht',
-      description: `Optimale Löslichkeit: Unser WPC 80 löst sich klumpenfrei durch leichte Scherkraft – kurzes Schütteln im Shaker genügt. Ohne Lecithin, ohne chemische Instantisierung.`
+      description: `Funktion aus Struktur: Unser WPC 80 funktioniert über die natürliche Struktur der Rohstoffe – ohne Lecithin, ohne chemische Instantisierung.`
     },
     result: [
-      'Optimale Löslichkeit: klumpenfrei durch leichte Scherkraft (kurzes Schütteln im Shaker)',
+      'Funktion aus Struktur – nicht aus Zusatz- oder Füllstoffen',
       'Kein Klumpen, kein Film, kein schweres Mundgefühl',
       'Angenehm neutral im Geschmack'
     ],
