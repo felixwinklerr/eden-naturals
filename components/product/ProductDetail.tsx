@@ -189,16 +189,19 @@ export function ProductDetail({ product, crossSellProducts }: ProductDetailProps
                 </span>
               </div>
 
-              {/* Preis + Social Proof Micro-Signal */}
+              {/* Preis + eindeutige Größe/Variante */}
               <div className="mb-2.5 md:mb-3.5">
-                <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex flex-wrap items-baseline gap-2">
                   <span className="text-2xl md:text-3xl font-bold text-accent">
                     {formatPrice(price, currencyCode)}
                   </span>
-                  <span className="text-sm md:text-base text-text-light">
+                  <span className="text-sm md:text-base font-medium text-text">
                     {t('product.priceFor', { variant: variantTitle })}
                   </span>
                 </div>
+                <p className="text-xs text-text-muted mt-0.5">
+                  {t('product.priceVariantNote')}
+                </p>
                 <div className="flex items-center gap-3 mt-1">
                   <p className="text-xs text-text-muted">{pricePerKgFormatted} {t('product.perKg')}</p>
                   {/* Social Proof Micro-Signal */}
