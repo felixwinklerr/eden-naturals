@@ -21,12 +21,13 @@ export default async function HomePage() {
   const productImages = productResults.map((res) => {
     const p = res?.product
     const node = p?.images?.edges?.[0]?.node
+    const price = p?.priceRange?.maxVariantPrice || p?.priceRange?.minVariantPrice
     return {
       handle: p?.handle ?? '',
       imageUrl: node?.url,
       imageAlt: node?.altText ?? p?.title,
-      priceAmount: p?.priceRange?.minVariantPrice?.amount as string | undefined,
-      priceCurrency: (p?.priceRange?.minVariantPrice?.currencyCode ?? 'EUR') as string,
+      priceAmount: price?.amount as string | undefined,
+      priceCurrency: (price?.currencyCode ?? 'EUR') as string,
     }
   })
 

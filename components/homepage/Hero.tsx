@@ -18,42 +18,37 @@ export function Hero() {
             <p className="text-base sm:text-lg md:text-xl text-text-light mb-5 md:mb-6 leading-relaxed max-w-lg mx-auto md:mx-0">
               {t('home.hero.subline')}
             </p>
-            <p className="text-sm font-semibold text-text mb-2 max-w-md mx-auto md:mx-0">
-              {t('home.hero.effectLabel')}
-            </p>
-            <div className="space-y-2.5 mb-6 md:mb-8 max-w-md mx-auto md:mx-0">
+            <div className="space-y-2 mb-6 md:mb-8 max-w-md mx-auto md:mx-0">
               <div className="flex items-center gap-3 text-sm md:text-base">
                 <span className="w-6 h-6 bg-accent bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-accent text-xs font-bold">✓</span>
                 </span>
-                <span className="text-text">{t('home.hero.benefit1')}</span>
+                <span className="text-text">{t('home.hero.bullet1')}</span>
               </div>
               <div className="flex items-center gap-3 text-sm md:text-base">
                 <span className="w-6 h-6 bg-accent bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-accent text-xs font-bold">✓</span>
                 </span>
-                <span className="text-text">{t('home.hero.benefit2')}</span>
+                <span className="text-text">{t('home.hero.bullet2')}</span>
               </div>
               <div className="flex items-center gap-3 text-sm md:text-base">
                 <span className="w-6 h-6 bg-accent bg-opacity-10 rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-accent text-xs font-bold">✓</span>
                 </span>
-                <span className="text-text">{t('home.hero.benefit3')}</span>
+                <span className="text-text">{t('home.hero.bullet3')}</span>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row items-center gap-4 mb-5 md:mb-6">
+            <div className="flex flex-col sm:flex-row items-center gap-3 mb-5 md:mb-6">
               <Link href="/products" className="btn-primary text-base md:text-lg px-8 py-3.5 md:py-4 w-full sm:w-auto">
                 {t('home.hero.cta')}
               </Link>
-              <span className="text-text-light text-sm">{t('home.hero.priceNote')}</span>
+              <Link href="#warum-eden" className="btn-secondary text-base md:text-lg px-8 py-3.5 md:py-4 w-full sm:w-auto">
+                {t('home.hero.ctaSecondary')}
+              </Link>
             </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 justify-center md:justify-start text-xs md:text-sm text-text-muted">
-              <span>{t('home.hero.madeInLux')}</span>
-              <span>•</span>
-              <span>{t('home.hero.natural')}</span>
-              <span>•</span>
-              <span>{t('home.hero.guarantee')}</span>
-            </div>
+            <p className="text-text-muted text-xs md:text-sm">
+              {t('home.hero.priceNote')}
+            </p>
           </div>
           <div className="relative order-first md:order-last">
             <div className="aspect-square relative rounded-2xl shadow-2xl overflow-hidden bg-gray-100">

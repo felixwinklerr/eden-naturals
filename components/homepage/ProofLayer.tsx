@@ -13,8 +13,11 @@ export function ProofLayer() {
   ]
 
   return (
-    <section className="py-8 md:py-10 bg-white border-b border-gray-100">
+    <section id="warum-eden" className="py-8 md:py-10 bg-white border-b border-gray-100">
       <div className="container-custom">
+        <h2 className="text-xl md:text-2xl font-bold text-text mb-6 text-center md:text-left">
+          {t('home.proof.sectionTitle')}
+        </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {proofPoints.map((point, index) => (
             <div key={index} className="text-center">

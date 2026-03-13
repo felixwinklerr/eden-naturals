@@ -14,6 +14,10 @@ export const PRODUCT_BY_HANDLE = gql`
           amount
           currencyCode
         }
+        maxVariantPrice {
+          amount
+          currencyCode
+        }
       }
       images(first: 10) {
         edges {
