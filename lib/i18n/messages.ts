@@ -66,6 +66,13 @@ export const de = {
     paypal: 'PayPal',
   },
   home: {
+    promo: {
+      badge: 'Einführungsaktion',
+      title: 'Einführungsaktion – nur für kurze Zeit: 1 kg Eden Naturals Protein zum Einführungspreis.',
+      wpc: 'WPC 80 (Whey): 1 kg für 42,90 €',
+      blend: 'Vegan Blend: 1 kg für 32,90 €',
+      peaRice: 'Reis- oder Erbsenprotein: 1 kg für 29,90 €',
+    },
     hero: {
       headline: 'Protein ohne Lecithin, ohne Emulgatoren, ohne Aromen.',
       subline: 'Mechanisch veredelt statt chemisch behandelt. Nur 2 Zutaten. Trotzdem gut löslich.',
@@ -831,6 +838,13 @@ export const en = {
     paypal: 'PayPal',
   },
   home: {
+    promo: {
+      badge: 'Intro offer',
+      title: 'Intro offer – limited time only: 1 kg Eden Naturals protein at a special launch price.',
+      wpc: 'WPC 80 (whey): 1 kg for €42.90',
+      blend: 'Vegan Blend: 1 kg for €32.90',
+      peaRice: 'Rice or pea protein: 1 kg for €29.90',
+    },
     hero: {
       headline: 'Protein without lecithin, without emulsifiers, without flavours.',
       subline: 'Mechanically refined instead of chemically treated. Only 2 ingredients. Still mixes well.',
@@ -1596,6 +1610,13 @@ export const fr: Record<string, unknown> = {
     paypal: 'PayPal',
   },
   home: {
+    promo: {
+      badge: 'Offre de lancement',
+      title: 'Offre de lancement – pour une durée limitée : 1 kg de protéine Eden Naturals à prix d\'introduction.',
+      wpc: 'WPC 80 (whey) : 1 kg pour 42,90 €',
+      blend: 'Vegan Blend : 1 kg pour 32,90 €',
+      peaRice: 'Protéine de riz ou de pois : 1 kg pour 29,90 €',
+    },
     hero: {
       headline: 'Protéine sans lécithine, sans émulsifiants, sans arômes.',
       subline: 'Raffinage mécanique au lieu de traitement chimique. Seulement 2 ingrédients. Pourtant bien soluble.',
@@ -2106,6 +2127,13 @@ export const lb: Record<string, unknown> = {
     paypal: 'PayPal',
   },
   home: {
+    promo: {
+      badge: 'Aféierungsaktioun',
+      title: 'Aféierungsaktioun – nëmme fir eng kuerz Zäit: 1 kg Eden Naturals Protein zum Startpräis.',
+      wpc: 'WPC 80 (Whey): 1 kg fir 42,90 €',
+      blend: 'Vegan Blend: 1 kg fir 32,90 €',
+      peaRice: 'Räis- oder Äerzezprotein: 1 kg fir 29,90 €',
+    },
     hero: {
       headline: 'Protein ouni Lecithin, ouni Emulgatoren, ouni Aromen.',
       subline: 'Mechanesch veredelt amplaz chemesch behandelt. Nëmmen 2 Zutaten. Trotzdeem gutt léisbar.',

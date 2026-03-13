@@ -1,5 +1,6 @@
 import { Hero } from '@/components/homepage/Hero'
 import { ProofLayer } from '@/components/homepage/ProofLayer'
+import { IntroPromo } from '@/components/homepage/IntroPromo'
 import { ProductSelector } from '@/components/homepage/ProductSelector'
 import { AuthorityLayer } from '@/components/homepage/AuthorityLayer'
 import { ComparisonSection } from '@/components/homepage/ComparisonSection'
@@ -33,6 +34,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <IntroPromo />
       <Hero />
       <ProofLayer />
       <ProductSelector productImages={productImages} />
